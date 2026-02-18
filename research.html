@@ -144,8 +144,8 @@
     /* ホットスポット（橋の位置に置く） */
     .hotspot{
       position:absolute;
-      left: 56%;
-      top: 58%;
+      left: 40%;
+      top: 48%;
       width: 44px;
       height: 44px;
       border-radius: 999px;
@@ -166,8 +166,8 @@
     /* 吹き出し（ホバーで表示） */
     .bubble{
       position:absolute;
-      left: 56%;
-      top: 58%;
+      left: 40%;
+      top: 48%;
       transform: translate(-50%, calc(-100% - 18px));
       width: min(440px, 80vw);
 
@@ -212,7 +212,6 @@
     }
 
     /* ホバーで吹き出し表示 */
-    .city:hover .bubble,
     .hotspot:hover + .bubble{
       opacity: 1;
       visibility: visible;
