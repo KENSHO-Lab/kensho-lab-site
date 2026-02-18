@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KENSHO Lab</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      background: #0b1220;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* ===== 動画背景 ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(40%);
+    }
+
+    .hero-content {
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-weight: 400;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      border: 1px solid white;
+      border-radius: 8px;
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+    }
+
+    .button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 20px;
+      border-left: 4px solid #3ea6ff;
+      padding-left: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== トップ動画セクション ===== -->
+  <div class="hero">
+    <!-- 動画URLは後で差し替えます -->
+    <video autoplay muted loop>
+      <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-content">
+      <h1>KENSHO Lab</h1>
+      <h2>AI × 橋梁工学 × 建設DX</h2>
+      <a href="#industry" class="button">共同研究のご相談</a>
+    </div>
+  </div>
+
+  <!-- ===== 研究内容 ===== -->
+  <section>
+    <div class="section-title">Research</div>
+    <p>
+      橋梁劣化診断AI、画像解析、構造ヘルスモニタリング、点群解析など、
+      社会インフラを高度化するための知能化研究を推進しています。
+    </p>
+  </section>
+
+  <!-- ===== 産学連携 ===== -->
+  <section id="industry">
+    <div class="section-title">Industry Collaboration</div>
+    <p>
+      KENSHO Labは、橋梁分野におけるAI技術の社会実装を目指し、
+      企業・自治体との共同研究を積極的に推進しています。
+      共同研究・受託研究・技術相談を歓迎いたします。
+    </p>
+  </section>
+
+</body>
+</html>
