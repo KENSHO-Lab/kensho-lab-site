@@ -86,25 +86,18 @@
 
     /* ロゴ＋文字の“白い帯”（透明） */
     .hero-band{
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-
-      padding: 22px 28px;
-      border-radius: 18px;
-
-    /* 白帯の透明度（好みで 0.25〜0.55） */
-    background: rgba(255,255,255,0.38);
-
-    /* 背景動画を少し見せつつ読みやすくする */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-      border: 1px solid rgba(255,255,255,0.30);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      width: min(1000px, 92vw);
+      padding: 40px 40px;
+      border-radius: 22px;
+    
+      background: rgba(255,255,255,0.32);  /* 少し薄く */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 20px 70px rgba(0,0,0,0.35);
     }
-
+    
   /* ロゴを“もう少し大きく” */
   .logo{
       width: min(680px, 86vw);   /* ←大きさはここで調整 */
@@ -114,6 +107,41 @@
       filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
     }
 
+    .center-layout{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    
+    .main-nav{
+      display:flex;
+      gap:40px;
+      margin:22px 0 10px 0;
+      font-size:18px;
+      font-weight:600;
+    }
+    
+    .main-nav a{
+      text-decoration:none;
+      color:#0b1220;
+      position:relative;
+      transition:0.3s;
+    }
+    
+    .main-nav a::after{
+      content:"";
+      display:block;
+      width:0%;
+      height:2px;
+      background:#0b1220;
+      transition:0.3s;
+      margin-top:6px;
+    }
+    
+    .main-nav a:hover::after{
+      width:100%;
+    }
+    
   /* AI×… の文字 */
   .tagline{
       color: #0b1220; /* 白帯の上なので濃い色 */
@@ -150,31 +178,26 @@
     </video>
 
 <div class="hero-content">
-  <div class="hero-band">
-    <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4.png" alt="KENSHO Lab" class="logo">
-    <div class="tagline">AI × 橋梁工学 × 建設DX</div>
+  <div class="hero-band center-layout">
+
+    <img src="＜S3の透明ロゴURL＞" alt="KENSHO Lab" class="logo">
+
+    <div class="tagline">
+      AI × 橋梁工学 × 建設DX
+    </div>
+
+    <nav class="main-nav">
+      <a href="#research">Research</a>
+      <a href="#member">Lab Member</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#news">News</a>
+      <a href="#access">Access</a>
+    </nav>
+
     <a href="#industry" class="button">共同研究のご相談</a>
+
   </div>
 </div>
-
-  <!-- ===== 研究内容 ===== -->
-  <section>
-    <div class="section-title">Research</div>
-    <p>
-      橋梁劣化診断AI、画像解析、構造ヘルスモニタリング、点群解析など、
-      社会インフラを高度化するための知能化研究を推進しています。
-    </p>
-  </section>
-
-  <!-- ===== 産学連携 ===== -->
-  <section id="industry">
-    <div class="section-title">Industry Collaboration</div>
-    <p>
-      KENSHO Labは、橋梁分野におけるAI技術の社会実装を目指し、
-      企業・自治体との共同研究を積極的に推進しています。
-      共同研究・受託研究・技術相談を歓迎いたします。
-    </p>
-  </section>
 
 </body>
 </html>
