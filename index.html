@@ -90,7 +90,7 @@
       padding: 40px 40px;
       border-radius: 22px;
     
-      background: rgba(255,255,255,0.32);  /* 少し薄く */
+      background: rgba(255,255,255,0.25);  /* 少し薄く */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     
@@ -166,6 +166,22 @@
   .button:hover{
       background: rgba(11,18,32,0.98);
     }
+
+    .university{
+      font-size: clamp(14px, 1.8vw, 20px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #0b1220;
+    }
+    
+    .catchcopy{
+      margin-top: 6px;
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #0b1220;
+    }
+    
   </style>
 </head>
 
@@ -182,9 +198,13 @@
 
     <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4.png" alt="KENSHO Lab" class="logo">
 
-    <div class="tagline">
-      AI × 橋梁工学 × 建設DX
-    </div>
+<div class="university">
+  国士舘大学 建設DX研究室
+</div>
+
+<div class="catchcopy">
+  橋を、知能で進化させる。
+</div>
 
     <nav class="main-nav">
       <a href="#research">Research</a>
