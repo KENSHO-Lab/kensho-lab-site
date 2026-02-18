@@ -144,37 +144,33 @@
     /* ホットスポット（橋の位置に置く） */
     .hotspot{
       position:absolute;
-      left: 35%;
-      top: 50%;
       width: 44px;
       height: 44px;
       border-radius: 999px;
       transform: translate(-50%, -50%);
-      background: rgba(190, 24, 93, 0.25);
-      border: 1px solid rgba(190, 24, 93, 0.75);
-      box-shadow: 0 0 0 10px rgba(190, 24, 93, 0.18);
+      background: rgba(220, 38, 38, 0.25);
+      border: 1px solid rgba(220, 38, 38, 0.75);
+      box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.18);
       cursor: pointer;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse{
-      0% { box-shadow: 0 0 0 0 rgba(190, 24, 93,0.6); }
-      70% { box-shadow: 0 0 0 20px rgba(190, 24, 93,0); }
-      100% { box-shadow: 0 0 0 0 rgba(190, 24, 93,0); }
+      0% { box-shadow: 0 0 0 0 rgba(220, 38, 38,0.6); }
+      70% { box-shadow: 0 0 0 20px rgba(220, 38, 38,0); }
+      100% { box-shadow: 0 0 0 0 rgba(220, 38, 38,0); }
     }
     
     .hotspot::after{
       content:"";
       position:absolute; inset: 10px;
       border-radius: 999px;
-      background: rgba(190, 24, 93, 0.85);
+      background: rgba(220, 38, 38, 0.85);
     }
 
     /* 吹き出し（ホバーで表示） */
     .bubble{
       position:absolute;
-      left: 35%;
-      top: 50%;
       transform: translate(-50%, calc(-100% - 18px));
       width: min(440px, 80vw);
 
@@ -229,6 +225,15 @@
       .hotspot{ width: 54px; height: 54px; }
       .bubble{ width: min(520px, 92vw); }
     }
+
+    /* 位置指定：橋 */
+    .hs-bridge{ left: 35%; top: 50%; }
+    .b-bridge{ left: 35%; top: 50%; }
+    
+    /* 位置指定：山（例。画像に合わせて調整） */
+    .hs-mountain{ left: 8%; top: 12%; }
+    .b-mountain{ left: 8%; top: 12%; }
+    
   </style>
 </head>
 
@@ -249,28 +254,38 @@
   <main class="page">
     <section class="hero">
       <div class="kicker">RESEARCH</div>
-      <h1>橋梁AI・建設DXの研究</h1>
+      <h1>研究テーマ</h1>
       <p class="lead">
-        インフラの現場課題に直結するAI技術を、データ・検証・実装まで一気通貫で扱います。
-        （この文章は後であなたの文章に差し替え可能）
+        インフラの現場課題に直結するAI技術を、データ収集・検証・実装まで一気通貫で扱います。
       </p>
     </section>
 
     <!-- インフラ都市イラスト＋ホットスポット -->
     <section class="city" aria-label="Infrastructure city illustration">
-      <!-- 橋の位置に置く（位置は後で調整） -->
-      <div class="hotspot" aria-label="Bridge hotspot"></div>
-
-      <div class="bubble" role="note" aria-label="Bridge research topics">
-        <h3>橋梁に関する研究テーマ</h3>
+    <!-- 橋：ホットスポット -->
+    <div class="hotspot hs-bridge" aria-label="Bridge hotspot"></div>
+    <div class="bubble b-bridge" role="note" aria-label="Bridge research topics">
+        <h3>鋼橋に関する研究テーマ</h3>
         <ul>
-          <li>画像解析によるひび割れ・剥離検出</li>
-          <li>点群／3Dモデルによる形状・変状解析</li>
-          <li>構造ヘルスモニタリング（SHM）</li>
-          <li>点検・診断のワークフローDX</li>
-          <li>現場実装を見据えたモデル運用</li>
+          <li>高力ボルト軸力評価手法の開発</li>
+          <li>3Dモデルを用いたAR橋梁点検</li>
+          <li>ボルトの自動締付け検査技術の開発</li>
+          <li>ドローンによる橋梁点検</li>
+          <li>高力ボルト摩擦接合継手の研究</li>
         </ul>
       </div>
+
+      <!-- 山：ホットスポット -->
+      <div class="hotspot hs-mountain" aria-label="Mountain hotspot"></div>
+      <div class="bubble b-mountain" role="note" aria-label="Mountain research topics">
+        <h3>トンネルに関する研究テーマ</h3>
+        <ul>
+          <li>トンネル壁面の変状検出</li>
+          <li>ドローンによるトンネル壁面点検</li>
+          <li>水上ロボットを使った下水道内点検</li>
+        </ul>
+      </div>
+      
     </section>
   </main>
 </body>
