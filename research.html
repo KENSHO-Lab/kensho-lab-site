@@ -214,6 +214,22 @@
       font-weight: 600;
     }
 
+    .b-mountain{
+      transform: translate(30px, 30px);   /* 右下へ */
+    }
+
+    .b-mountain::after{
+      content:"";
+      position:absolute;
+    
+      top: -10px;          /* 上側に配置 */
+      left: 18px;          /* 左寄りに配置 */
+    
+      border-width: 0 10px 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent rgba(255,255,255,0.18) transparent;
+    }
+
     /* ホバーで吹き出し表示 */
     .hotspot:hover + .bubble{
       opacity: 1;
