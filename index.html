@@ -83,6 +83,61 @@
       margin: 0 auto 18px;
       filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
     }
+
+    /* ロゴ＋文字の“白い帯”（透明） */
+    .hero-band{
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+
+      padding: 22px 28px;
+      border-radius: 18px;
+
+    /* 白帯の透明度（好みで 0.25〜0.55） */
+    background: rgba(255,255,255,0.38);
+
+    /* 背景動画を少し見せつつ読みやすくする */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+      border: 1px solid rgba(255,255,255,0.30);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+    }
+
+  /* ロゴを“もう少し大きく” */
+  .logo{
+      width: min(680px, 86vw);   /* ←大きさはここで調整 */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
+    }
+
+  /* AI×… の文字 */
+  .tagline{
+      color: #0b1220; /* 白帯の上なので濃い色 */
+      font-size: clamp(16px, 2.2vw, 24px);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+    }
+
+  /* ボタン（白帯の上で映えるように濃色に上書き） */
+  .button{
+      margin-top: 6px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      text-decoration: none;
+
+      background: rgba(11,18,32,0.88);
+      color: #ffffff;
+      border: 1px solid rgba(11,18,32,0.25);
+    }
+  .button:hover{
+      background: rgba(11,18,32,0.98);
+    }
   </style>
 </head>
 
@@ -94,12 +149,13 @@
       <source src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%B1%A0%E9%96%93%E5%A4%A7%E6%A9%8B.mp4" type="video/mp4">
     </video>
 
-    <div class="hero-content">
-      <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4.png" alt="KENSHO Lab" class="logo">
-      <h2>AI × 橋梁工学 × 建設DX</h2>
-      <a href="#industry" class="button">共同研究のご相談</a>
-    </div>
+<div class="hero-content">
+  <div class="hero-band">
+    <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4.png" alt="KENSHO Lab" class="logo">
+    <div class="tagline">AI × 橋梁工学 × 建設DX</div>
+    <a href="#industry" class="button">共同研究のご相談</a>
   </div>
+</div>
 
   <!-- ===== 研究内容 ===== -->
   <section>
