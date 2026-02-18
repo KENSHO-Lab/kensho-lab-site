@@ -37,32 +37,6 @@
       z-index: 1;
     }
 
-    h1 {
-      font-size: 64px;
-      margin: 0;
-      letter-spacing: 2px;
-    }
-
-    h2 {
-      font-weight: 400;
-      margin-top: 20px;
-      font-size: 24px;
-    }
-
-    .button {
-      margin-top: 30px;
-      padding: 12px 24px;
-      border: 1px solid white;
-      border-radius: 8px;
-      display: inline-block;
-      text-decoration: none;
-      color: white;
-    }
-
-    .button:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
     section {
       padding: 80px 20px;
       max-width: 1000px;
@@ -74,14 +48,6 @@
       margin-bottom: 20px;
       border-left: 4px solid #3ea6ff;
       padding-left: 12px;
-    }
-
-    .logo{
-      width: min(520px, 78vw);
-      height: auto;
-      display: block;
-      margin: 0 auto 18px;
-      filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
     }
 
     /* ロゴ＋文字の“白い帯”（透明） */
@@ -98,12 +64,11 @@
       box-shadow: 0 20px 70px rgba(0,0,0,0.35);
     }
     
-  /* ロゴを“もう少し大きく” */
-  .logo{
-      width: min(680px, 86vw);   /* ←大きさはここで調整 */
+    .logo{
+      width: min(680px, 86vw);
       height: auto;
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 6px;   /* ←ロゴ下の余白を小さくする */
       filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
     }
 
@@ -115,40 +80,31 @@
     
     .main-nav{
       display:flex;
-      gap:40px;
-      margin:22px 0 10px 0;
-      font-size:18px;
-      font-weight:600;
+      gap: 10px;
+      margin: 16px 0 8px 0;
+      padding: 8px;
+      border-radius: 999px;
+      background: rgba(11,18,32,0.10);
+      border: 1px solid rgba(11,18,32,0.12);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
     
     .main-nav a{
+      padding: 10px 14px;
+      border-radius: 999px;
       text-decoration:none;
       color:#0b1220;
-      position:relative;
-      transition:0.3s;
-    }
-    
-    .main-nav a::after{
-      content:"";
-      display:block;
-      width:0%;
-      height:2px;
-      background:#0b1220;
-      transition:0.3s;
-      margin-top:6px;
-    }
-    
-    .main-nav a:hover::after{
-      width:100%;
-    }
-    
-  /* AI×… の文字 */
-  .tagline{
-      color: #0b1220; /* 白帯の上なので濃い色 */
-      font-size: clamp(16px, 2.2vw, 24px);
-      letter-spacing: 0.08em;
       font-weight: 700;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      transition: 0.25s;
+    }
+    
+    .main-nav a:hover{
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+      transform: translateY(-1px);
     }
 
   /* ボタン（白帯の上で映えるように濃色に上書き） */
@@ -168,6 +124,7 @@
     }
 
     .university{
+      margin-top: 0;
       font-size: clamp(14px, 1.8vw, 20px);
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -175,13 +132,21 @@
     }
     
     .catchcopy{
-      margin-top: 6px;
+      margin-top: 2px;
       font-size: clamp(22px, 3.5vw, 36px);
       font-weight: 800;
       letter-spacing: 0.08em;
       color: #0b1220;
     }
-    
+
+    @media (max-width: 640px){
+      .main-nav{
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 18px;
+      }
+    }    
+
   </style>
 </head>
 
