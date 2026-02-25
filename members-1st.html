@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1期生 | KENSHO Lab</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.25);
+    }
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at 20% 10%, rgba(62,166,255,0.12), rgba(11,18,32,1) 55%);
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    .topbar{
+      position: sticky;
+      top: 12px;
+      width: min(1100px, 92vw);
+      margin: 12px auto 0;
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      padding-left: 6px;
+      color:#fff; text-decoration:none;
+      font-weight:800; letter-spacing:.04em; white-space:nowrap;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:#3ea6ff;
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+    .nav{
+      display:flex; gap: 8px; flex-wrap: wrap; justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none; color:#fff;
+      font-weight:700; font-size: 14px;
+      padding: 10px 12px; border-radius: 999px; transition:.2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+
+    .wrap{
+      width: min(1100px, 92vw);
+      margin: 18px auto 40px;
+    }
+    .kicker{
+      opacity:.85; letter-spacing:.10em; font-weight:700; font-size: 13px;
+    }
+    h1{
+      margin: 10px 0 14px;
+      font-size: clamp(28px, 4.0vw, 44px);
+      letter-spacing: .04em;
+    }
+
+    /* 11名をPCでスクロール少なめで見せる：横5×2段＋1 くらい */
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.20);
+    }
+    .photo{
+      aspect-ratio: 4/5;
+      background: rgba(255,255,255,0.08);
+      background-size: cover;
+      background-position: center;
+    }
+    .meta{
+      padding: 10px 12px 12px;
+      line-height: 1.55;
+    }
+    .name{
+      font-weight: 900;
+      letter-spacing: .04em;
+      margin: 0 0 4px;
+      font-size: 15px;
+    }
+    .line{ margin: 0; opacity: .88; font-size: 12.5px; }
+    .tag{ opacity:.95; font-weight:700; }
+
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="kicker">LAB MEMBER</div>
+    <h1>1期生</h1>
+
+    <section class="grid" aria-label="Members grid">
+      <!-- 画像URLはあとで差し替え（S3 Object URL） -->
+      <!-- 例：style="background-image:url('https://.../member01.jpg')" -->
+
+      <article class="card">
+        <div class="photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/No_photo.png');"></div>
+        <div class="meta">
+          <p class="name">メンバー01</p>
+          <p class="line"><span class="tag">卒業年：</span>2026</p>
+          <p class="line"><span class="tag">研究：</span>（例）橋梁点検AI</p>
+          <p class="line"><span class="tag">趣味：</span>（例）写真</p>
+        </div>
+      </article>
+
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー02</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）点群解析</p><p class="line"><span class="tag">趣味：</span>（例）旅行</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー03</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）SHM</p><p class="line"><span class="tag">趣味：</span>（例）映画</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー04</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）AR点検</p><p class="line"><span class="tag">趣味：</span>（例）筋トレ</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー05</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）ドローン</p><p class="line"><span class="tag">趣味：</span>（例）カフェ</p></div></article>
+
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー06</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）ボルト検査</p><p class="line"><span class="tag">趣味：</span>（例）釣り</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー07</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）劣化予測</p><p class="line"><span class="tag">趣味：</span>（例）ゲーム</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー08</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）CIM活用</p><p class="line"><span class="tag">趣味：</span>（例）料理</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー09</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）画像処理</p><p class="line"><span class="tag">趣味：</span>（例）サウナ</p></div></article>
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー10</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）データ基盤</p><p class="line"><span class="tag">趣味：</span>（例）読書</p></div></article>
+
+      <article class="card"><div class="photo"></div><div class="meta"><p class="name">メンバー11</p><p class="line"><span class="tag">卒業年：</span>2026</p><p class="line"><span class="tag">研究：</span>（例）自動化</p><p class="line"><span class="tag">趣味：</span>（例）音楽</p></div></article>
+    </section>
+  </main>
+</body>
+</html>
