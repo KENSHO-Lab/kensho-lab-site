@@ -106,7 +106,7 @@
       font-weight: 800;
     }
     .title-icon{
-      width: 34px;
+      width: 70px;
       height: auto;
       opacity: .92;
       filter: drop-shadow(0 8px 22px rgba(0,0,0,0.25));
@@ -115,7 +115,6 @@
       margin:0;
       opacity:.86;
       line-height:1.8;
-      max-width: 80ch;
     }
 
     /* ===== 宇宙キャンバス ===== */
@@ -175,7 +174,10 @@
       transition: .18s;
       transform: translate(20px, 18px);
 
-      width: min(320px, 70vw);
+      display: inline-block;
+      width: auto;
+      max-width: 80vw;
+      white-space: nowrap;
       background: var(--glass2);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -184,16 +186,6 @@
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 18px 60px rgba(0,0,0,0.30);
       color:#fff;
-    }
-    .bubble::after{
-      content:"";
-      position:absolute;
-      top: 14px;
-      left: -10px;
-      border-width: 10px 10px 10px 0;
-      border-style: solid;
-      border-color: transparent rgba(255,255,255,0.18) transparent transparent;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.20));
     }
     .bubble .label{
       font-weight: 900;
@@ -236,7 +228,7 @@
 
   <main class="page">
     <section class="hero">
-      <div class="kicker">LAB MEMBER</div>
+      <div class="kicker">LAB MEMBERS</div>
       <h1 class="page-title">
         <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="KENSHO Lab" class="title-icon">
         研究室メンバー
