@@ -185,14 +185,19 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+    /* 研究分野タイトルを少し大きく */
+    .section .h{
+      font-size: 15px;
+    }
+    
     .chip{
       padding: 10px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.16);
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: .05em;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     /* Career timeline */
@@ -229,6 +234,15 @@
       .timeline li{ grid-template-columns: 1fr; }
       .year{ margin-bottom: -6px; }
     }
+
+    .boss-name{
+      text-shadow: 0 0 18px rgba(62,166,255,0.35);
+      margin:0;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+    
   </style>
 </head>
 
@@ -262,12 +276,17 @@
       <!-- 右：研究分野・経歴 -->
       <div class="card">
         <div class="info">
-          <div class="section">
-            <div class="h"><span class="dot"></span>NAME</div>
-            <p class="desc" style="margin:0;">
-              平尾 賢生（KENSHO HIRAO）
-            </p>
-          </div>
+<div class="section">
+  <div class="h"><span class="dot"></span>PROFILE</div>
+
+  <p class="boss-name">
+    平尾 賢生（KENSHO HIRAO）
+  </p>
+
+  <p class="boss-origin">
+    出身：　大都会　福井
+  </p>
+</div>
 
           <div class="section">
             <div class="h"><span class="dot"></span>RESEARCH FIELDS</div>
@@ -285,16 +304,28 @@
             <ul class="timeline">
               <!-- ここをあなたの経歴に書き換えて増やしてください -->
               <li>
-                <div class="year">20XX–20XX</div>
-                <p class="desc">東京工業大学　博士後期課程修了</p>
+                <div class="year">2013-2017</div>
+                <p class="desc">福井大学　建築学　卒業</p>
               </li>
               <li>
-                <div class="year">20XX–20XX</div>
-                <p class="desc">（例）○○大学／研究機関　○○</p>
+                <div class="year">2017–2019</div>
+                <p class="desc">東京工業大学(現 東京科学大学)　土木工学　修士課程修了</p>
               </li>
               <li>
-                <div class="year">20XX–Present</div>
-                <p class="desc">国士舘大学　（例）准教授／助教 など</p>
+                <div class="year">2017–2022</div>
+                <p class="desc">東京工業大学(現 東京科学大学)　土木工学　博士課程修了</p>
+              </li>
+              <li>
+                <div class="year">2022–2025</div>
+                <p class="desc">横浜国立大学　都市イノベーション研究院　助教</p>
+              </li>
+              <li>
+                <div class="year">2024–Present</div>
+                <p class="desc">法政大学　都市デザイン　非常勤講師</p>
+              </li>
+              <li>
+                <div class="year">2025–Present</div>
+                <p class="desc">国士舘大学　講師</p>
               </li>
             </ul>
           </div>
