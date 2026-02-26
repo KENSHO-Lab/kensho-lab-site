@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOSS | KENSHO Lab</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.12);
+      --glass2: rgba(255,255,255,0.16);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.25);
+      --accent: rgba(62,166,255,0.95);
+    }
+
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(62,166,255,0.16), rgba(11,18,32,1) 55%),
+        radial-gradient(circle at 78% 18%, rgba(255,255,255,0.06), rgba(11,18,32,0) 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* ===== Topbar（他ページと同系統） ===== */
+    .topbar{
+      position: sticky;
+      top: 12px;
+      width: min(1100px, 92vw);
+      margin: 12px auto 0;
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-left: 6px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:#3ea6ff;
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+
+    .nav{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:700;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: .2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+    .nav a.active{
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    /* ===== Layout ===== */
+    .wrap{
+      width: min(1100px, 92vw);
+      margin: 18px auto 44px;
+    }
+
+    .kicker{
+      opacity:.85;
+      letter-spacing:.10em;
+      font-weight:800;
+      font-size: 13px;
+    }
+
+    .title{
+      margin: 10px 0 18px;
+      font-size: clamp(28px, 4.0vw, 44px);
+      letter-spacing: .04em;
+      font-weight: 900;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+
+    /* Photo card */
+    .photo{
+      aspect-ratio: 4/5;
+      background: rgba(255,255,255,0.06);
+      background-image: url("https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F2.jpg"); /* ←ここを差し替え */
+      background-size: cover;
+      background-position: center;
+    }
+    .photo-meta{
+      padding: 14px 16px 16px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .name{
+      margin:0;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+    .name-en{
+      margin: 6px 0 0;
+      opacity:.85;
+      letter-spacing: .08em;
+      font-weight: 700;
+      font-size: 12.5px;
+    }
+
+    /* Info card */
+    .info{
+      padding: 18px 18px 16px;
+    }
+    .section{
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .section:last-child{
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .h{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin: 0 0 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      font-size: 13px;
+      opacity: .95;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.14);
+      flex: 0 0 auto;
+    }
+
+    /* Research fields chips */
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chip{
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      font-weight: 800;
+      letter-spacing: .05em;
+      font-size: 13px;
+    }
+
+    /* Career timeline */
+    .timeline{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .timeline li{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.10);
+    }
+    .timeline li:first-child{ border-top:none; padding-top: 2px; }
+    .year{
+      opacity:.9;
+      font-weight: 900;
+      letter-spacing: .06em;
+      font-size: 12.5px;
+    }
+    .desc{
+      margin:0;
+      opacity:.92;
+      line-height: 1.8;
+      font-weight: 650;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+      .timeline li{ grid-template-columns: 1fr; }
+      .year{ margin-bottom: -6px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a class="active" href="members.html">Lab Members</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="kicker">LAB MEMBERS</div>
+    <h1 class="title">BOSS</h1>
+
+    <section class="grid">
+      <!-- 左：写真＋名前 -->
+      <div class="card">
+        <div class="photo" aria-label="Profile photo"></div>
+        <div class="photo-meta">
+          <p class="name">平尾 賢生</p>
+          <p class="name-en">KENSHO HIRAO</p>
+        </div>
+      </div>
+
+      <!-- 右：研究分野・経歴 -->
+      <div class="card">
+        <div class="info">
+          <div class="section">
+            <div class="h"><span class="dot"></span>NAME</div>
+            <p class="desc" style="margin:0;">
+              平尾 賢生（KENSHO HIRAO）
+            </p>
+          </div>
+
+          <div class="section">
+            <div class="h"><span class="dot"></span>RESEARCH FIELDS</div>
+            <div class="chips">
+              <span class="chip">建設DX</span>
+              <span class="chip">鋼構造</span>
+              <span class="chip">構造工学</span>
+              <span class="chip">AI・データサイエンス</span>
+              <span class="chip">非破壊検査</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="h"><span class="dot"></span>CAREER</div>
+            <ul class="timeline">
+              <!-- ここをあなたの経歴に書き換えて増やしてください -->
+              <li>
+                <div class="year">20XX–20XX</div>
+                <p class="desc">東京工業大学　博士後期課程修了</p>
+              </li>
+              <li>
+                <div class="year">20XX–20XX</div>
+                <p class="desc">（例）○○大学／研究機関　○○</p>
+              </li>
+              <li>
+                <div class="year">20XX–Present</div>
+                <p class="desc">国士舘大学　（例）准教授／助教 など</p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
