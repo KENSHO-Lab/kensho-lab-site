@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>普段の研究室 | Gallery | KENSHO Lab</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.25);
+    }
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,0.06), rgba(11,18,32,1) 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    .topbar{
+      position: sticky;
+      top: 12px;
+      width: min(1100px, 92vw);
+      margin: 12px auto 0;
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      padding-left: 6px;
+      color:#fff; text-decoration:none;
+      font-weight:800; letter-spacing:.04em; white-space:nowrap;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:#3ea6ff;
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+
+    .wrap{
+      width: min(1100px, 92vw);
+      margin: 18px auto 44px;
+    }
+    .kicker{
+      opacity:.85;
+      letter-spacing:.12em;
+      font-weight:900;
+      font-size: 12px;
+    }
+    h1{
+      margin: 10px 0 6px;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: .04em;
+      font-weight: 900;
+    }
+    .lead{
+      margin:0;
+      opacity:.86;
+      line-height:1.8;
+      max-width: 80ch;
+    }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .tile{
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.22);
+    }
+    .photo{
+      aspect-ratio: 4/3;
+      background: #222;
+      background-size: cover;
+      background-position: center;
+    }
+    .cap{
+      padding: 10px 12px 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      opacity: .92;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
+    <!-- ※新規タブで開かれるページなので、ナビは最小にしています（必要なら増やせます） -->
+  </header>
+
+  <main class="wrap">
+    <div class="kicker">GALLERY</div>
+    <h1>普段の研究室</h1>
+    <p class="lead">日々の研究・ミーティング・団らんの様子</p>
+
+    <section class="grid" aria-label="Photo grid">
+      <!-- 写真URLをS3に上げて background-image で差し替え -->
+      <article class="tile">
+        <div class="photo" style="background-image:url('');"></div>
+        <div class="cap">研究ミーティング</div>
+      </article>
+      <article class="tile"><div class="photo"></div><div class="cap">実験準備</div></article>
+      <article class="tile"><div class="photo"></div><div class="cap">解析作業</div></article>
+      <article class="tile"><div class="photo"></div><div class="cap">ボード議論</div></article>
+      <article class="tile"><div class="photo"></div><div class="cap">機材チェック</div></article>
+      <article class="tile"><div class="photo"></div><div class="cap">学会準備</div></article>
+      <article class="tile"><div class="photo"></div><div class="cap">共同研究の打合せ</div></article>
+      <article class="tile"><div class="photo"></div><div class="cap">データ整理</div></article>
+    </section>
+  </main>
+</body>
+</html>
