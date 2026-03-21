@@ -53,6 +53,27 @@
       box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
     }
 
+    .nav{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:700;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: .2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+    .nav a.active{
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    
     .wrap{
       width: min(1100px, 92vw);
       margin: 18px auto 44px;
@@ -116,9 +137,16 @@
 </head>
 
 <body>
-  <header class="topbar">
+<header class="topbar">
     <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
-    <!-- ※新規タブで開かれるページなので、ナビは最小にしています（必要なら増やせます） -->
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a class="active" href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
   </header>
 
   <main class="wrap">
