@@ -65,10 +65,10 @@
     }
     
     .logo{
-      width: min(680px, 86vw);
+      width: min(420px, 70vw);
       height: auto;
       display: block;
-      margin: 0 auto 6px;   /* ←ロゴ下の余白を小さくする */
+      margin: 0 auto 15px;   /* ←ロゴ下の余白を小さくする */
       filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
     }
 
@@ -125,18 +125,21 @@
 
     .university{
       margin-top: 0;
-      font-size: clamp(14px, 1.8vw, 20px);
+      font-size: clamp(22px, 3.2vw, 32px);
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       color: #0b1220;
+      line-height: 1.2;       /* 行間調整 */
+      margin-bottom: 10px;    /* キャッチコピーとの間隔 */
     }
     
-    .catchcopy{
-      margin-top: 2px;
-      font-size: clamp(22px, 3.5vw, 36px);
-      font-weight: 800;
+    .catchcopy {
+      margin-top: 5px;
+      font-size: clamp(18px, 2.8vw, 28px); /* 大学名より少しだけ控えめにすると綺麗です */
+      font-weight: 700;
       letter-spacing: 0.08em;
       color: #0b1220;
+      opacity: 0.9;
     }
 
     @media (max-width: 640px){
