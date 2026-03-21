@@ -166,6 +166,29 @@
     }
     .planet:hover{ transform: translate(-50%, -50%) scale(1.06); }
 
+    /* BOSS（金色の六芒星） */
+    .boss-star {
+      background: linear-gradient(135deg, #ffd700, #ffae00) !important;
+      /* 六芒星の形に切り抜き */
+      clip-path: polygon(50% 0%, 65% 25%, 100% 25%, 80% 50%, 100% 75%, 65% 75%, 50% 100%, 35% 75%, 0% 75%, 20% 50%, 0% 25%, 35% 25%);
+      width: 70px !important;
+      height: 70px !important;
+      border: none !important;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6) !important;
+    }
+    .boss-star::after { display: none; }
+
+    /* 現役星（赤色のポインター） */
+    .active-star {
+      background: rgba(220, 38, 38, 0.2) !important;
+      border: 2px solid #ff4b2b !important;
+      box-shadow: 0 0 25px rgba(220, 38, 38, 0.5) !important;
+    }
+    .active-star::after {
+      background: #ff4b2b !important;
+      box-shadow: 0 0 15px rgba(255, 75, 43, 0.8) !important;
+    }
+    
     /* 吹き出し */
     .bubble{
       position:absolute;
@@ -239,12 +262,20 @@
     </section>
 
     <section class="space" aria-label="Space illustration with planets">
-      <!-- BOSS（例：左上） -->
-      <a class="planet" href="members-boss.html"
+    <!-- BOSS（金色の星にクラス変更） -->
+      <a class="planet boss-star" href="members-boss.html"
          style="left:50%; top:40%;" aria-label="BOSS"></a>
       <div class="bubble" style="left:50%; top:40%;">
         <div class="label">BOSS</div>
         <p class="desc">教員紹介</p>
+      </div>
+
+      <!-- 現役星（新しく追加：BOSSの下 top:70% に配置） -->
+      <a class="planet active-star" href="members-current.html"
+         style="left:50%; top:70%;" aria-label="現役星"></a>
+      <div class="bubble" style="left:50%; top:70%;">
+        <div class="label">現役星</div>
+        <p class="desc">現役メンバー一覧</p>
       </div>
 
       <!-- 1期星（例：中央左） -->
