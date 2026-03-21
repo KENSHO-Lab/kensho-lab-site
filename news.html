@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News | KENSHO Lab</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.08);
+      --glass-bright: rgba(255,255,255,0.15);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.30);
+      --accent: #3ea6ff;
+    }
+
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color:#fff;
+      overflow: hidden; /* 画面全体のスクロールを止め、中身だけをスクロールさせる */
+    }
+
+    /* ===== 固定ヘッダー（共通） ===== */
+    .topbar{
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92vw);
+      z-index: 100;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; padding-left: 6px;
+      color:#fff; text-decoration:none; font-weight:800; letter-spacing:.04em;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+    .nav{ display:flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a{
+      text-decoration:none; color:#fff; font-weight:700; font-size: 14px;
+      padding: 10px 12px; border-radius: 999px; transition: .2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+    .nav a.active{ background: rgba(255,255,255,0.24); border: 1px solid rgba(255,255,255,0.22); }
+
+    /* ===== メインレイアウト ===== */
+    .news-container{
+      display: flex;
+      height: 100vh;
+      padding-top: 80px; /* ヘッダー分 */
+      box-sizing: border-box;
+    }
+
+    /* 左側：代表写真セクション */
+    .news-hero{
+      flex: 1.2;
+      position: relative;
+      margin: 20px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .main-photo{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* LAB NEWS ロゴの配置 */
+    .lab-news-logo{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 140px; /* ロゴのサイズはお好みで */
+      height: auto;
+      z-index: 10;
+      /* box-shadow: 0 0 30px rgba(0,0,0,0.3); */
+    }
+
+    /* 右側：スクロールリストセクション */
+    .news-list-wrapper{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 40px 40px 20px;
+      overflow: hidden;
+    }
+
+    .list-header{
+      margin-bottom: 24px;
+      padding-left: 10px;
+    }
+    .kicker{
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      opacity: 0.7;
+      font-weight: 800;
+    }
+    h1{
+      margin: 8px 0;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+
+    /* 実際のスクロールエリア */
+    .news-scroll-area{
+      overflow-y: auto;
+      padding-right: 15px;
+      /* スクロールバーのデザイン */
+    }
+    .news-scroll-area::-webkit-scrollbar { width: 6px; }
+    .news-scroll-area::-webkit-scrollbar-track { background: transparent; }
+    .news-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+    /* ニュースの見出しアイテム */
+    .news-item{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 24px;
+      margin-bottom: 16px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+    .news-item:hover{
+      background: var(--glass-bright);
+      transform: translateX(10px);
+      border-color: var(--accent);
+    }
+
+    .news-date{
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .news-title{
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* レスポンシブ調整 */
+    @media (max-width: 960px){
+      body { overflow-y: auto; }
+      .news-container { flex-direction: column; height: auto; }
+      .news-hero { height: 40vh; flex: none; }
+      .news-list-wrapper { padding: 20px; }
+      .news-scroll-area { overflow-y: visible; }
+      .lab-news-logo { width: 100px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 固定ヘッダー -->
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a href="gallery.html">Gallery</a>
+      <a class="active" href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="news-container">
+    <!-- 左側：代表写真 -->
+    <section class="news-hero">
+      <!-- 添付されたロゴ画像。S3にアップロードしてそのURLに書き換えてください -->
+      <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/LAB_NEWS.png" alt="LAB NEWS" class="lab-news-logo">
+      
+      <!-- 代表写真 -->
+      <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/MCH_Kokushikan.jpg" alt="Featured News" class="main-photo">
+    </section>
+
+    <!-- 右側：スクロールリスト -->
+    <section class="news-list-wrapper">
+      <div class="list-header">
+        <div class="kicker">LATEST UPDATES</div>
+        <h1>お知らせ</h1>
+      </div>
+
+      <div class="news-scroll-area">
+        <!-- ニュースを追加する際は、ここ（一番上）に追加していきます -->
+
+        <a href="news-detail-03.html" class="news-item">
+          <span class="news-date">2025.03.21</span>
+          <p class="news-title">研究室のホームページをリニューアル公開しました。</p>
+        </a>
+
+        <a href="news-detail-02.html" class="news-item">
+          <span class="news-date">2025.03.15</span>
+          <p class="news-title">【受賞】日本土木学会にて優秀研究発表賞を受賞しました。</p>
+        </a>
+
+        <a href="news-detail-01.html" class="news-item">
+          <span class="news-date">2025.03.10</span>
+          <p class="news-title">新しい共同研究プロジェクト「建設DXの知能化」がスタートしました。</p>
+        </a>
+
+        <!-- スクロールの確認用にダミーをいくつか配置 -->
+        <a href="#" class="news-item">
+          <span class="news-date">2025.02.28</span>
+          <p class="news-title">3年生向け研究室見学会を実施しました。</p>
+        </a>
+
+        <a href="#" class="news-item">
+          <span class="news-date">2025.02.15</span>
+          <p class="news-title">外部講師を招いたDX特別セミナーを開催しました。</p>
+        </a>
+
+        <a href="#" class="news-item">
+          <span class="news-date">2025.02.01</span>
+          <p class="news-title">新しい実験機材（高精度3Dスキャナ）が導入されました。</p>
+        </a>
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>
