@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>平尾賢生先生がご着任されました | News | KENSHO Lab</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --accent: #3ea6ff;
+    }
+
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color:#fff;
+      overflow: hidden; /* 画面全体のスクロールは禁止 */
+    }
+
+    /* ===== 固定ヘッダー（共通） ===== */
+    .topbar{
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92vw);
+      z-index: 100;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; padding-left: 6px;
+      color:#fff; text-decoration:none; font-weight:800; letter-spacing:.04em;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+    .nav{ display:flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a{
+      text-decoration:none; color:#fff; font-weight:700; font-size: 14px;
+      padding: 10px 12px; border-radius: 999px; transition: .2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+
+    /* ===== メインレイアウト ===== */
+    .detail-container{
+      display: flex;
+      height: 100vh;
+      padding-top: 80px; /* ヘッダー分 */
+      box-sizing: border-box;
+    }
+
+    /* --- 左側：写真スクロールエリア --- */
+    .visual-side{
+      flex: 1.2;
+      position: relative;
+      margin: 20px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow);
+    }
+
+    /* 固定ロゴ：写真がスクロールしても動かない */
+    .lab-news-logo{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 140px;
+      z-index: 20; /* 写真より上に配置 */
+      pointer-events: none; /* 下の写真のスクロールを邪魔しない */
+    }
+
+    /* 写真が縦に並ぶスクロールコンテナ */
+    .photo-scroller{
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      scroll-snap-type: y proximity; /* 写真の境目で止まりやすくする */
+    }
+    /* スクロールバーを隠す（または細くする） */
+    .photo-scroller::-webkit-scrollbar { width: 4px; }
+    .photo-scroller::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+
+    .photo-scroller img{
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      scroll-snap-align: start;
+    }
+
+    /* --- 右側：記事本文エリア --- */
+    .content-side{
+      flex: 1;
+      padding: 40px 60px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 記事が短いので中央寄りに配置 */
+    }
+
+    .date{
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    h1{
+      font-size: clamp(24px, 2.5vw, 36px);
+      font-weight: 900;
+      line-height: 1.4;
+      margin: 0 0 30px 0;
+      letter-spacing: 0.04em;
+    }
+
+    .article-body{
+      font-size: 17px;
+      line-height: 1.8;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .back-btn{
+      margin-top: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0.6;
+      transition: 0.3s;
+    }
+    .back-btn:hover{
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    /* --- レスポンシブ --- */
+    @media (max-width: 960px){
+      body { overflow-y: auto; }
+      .detail-container { flex-direction: column; height: auto; }
+      .visual-side { height: 60vh; flex: none; }
+      .content-side { padding: 40px 20px; flex: none; }
+      .lab-news-logo { width: 100px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 固定ヘッダー -->
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="detail-container">
+    <!-- 左側：写真セクション（縦スクロール） -->
+    <section class="visual-side">
+      <!-- 固定ロゴ -->
+      <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/LAB_NEWS.png" alt="LAB NEWS" class="lab-news-logo">
+      
+      <!-- 写真スクロールエリア -->
+      <div class="photo-scroller">
+        <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F1.jpg" alt="平尾先生写真1">
+        <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F2.jpg" alt="平尾先生写真2">
+        <!-- 写真がさらに増えても、ここに追加するだけでOKです -->
+      </div>
+    </section>
+
+    <!-- 右側：テキストセクション -->
+    <section class="content-side">
+      <div class="date">2025.04.01</div>
+      <h1>平尾賢生先生が国士舘大学にご着任されました。</h1>
+      
+      <div class="article-body">
+        <p>
+          2026年4月より、平尾賢生先生が国士舘大学 理工学部 まちづくり学系 建設DX研究室へ講師として着任されました。
+        </p>
+        <p>
+          平尾先生のご専門は「建設DX」「構造工学」「鋼構造」「非破壊検査」です。これまで、橋梁の維持管理や最新のAI・データサイエンスを用いた建設現場の生産性向上に関する研究に従事されてきました。本研究室では、先生のご指導のもと、インフラの未来をデジタル技術で変える新たな挑戦をスタートさせていきます。
+        </p>
+        <p>
+          これまで、橋梁の維持管理や最新のAI・データサイエンスを用いた建設現場の生産性向上に関する研究に従事されてきました。本研究室では、先生のご指導のもと、インフラの未来をデジタル技術で変える新たな挑戦をスタートさせていきます。
+        </p>
+        <p>
+          本研究室では、先生のご指導のもと、インフラの未来をデジタル技術で変える新たな挑戦をスタートさせていきます。
+        </p>
+      </div>
+
+      <!-- 戻るボタン -->
+      <a href="news.html" class="back-btn">
+        <span>←</span> News一覧に戻る
+      </a>
+    </section>
+  </main>
+
+</body>
+</html>
