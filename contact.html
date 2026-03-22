@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | KENSHO Lab</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --glass: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.15);
+      --accent: #3ea6ff;
+      --univ-red: #b02127;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: #fff;
+      background-image: radial-gradient(circle at 10% 10%, rgba(62, 166, 255, 0.05), transparent 40%);
+    }
+
+    /* --- 固定ヘッダー（共通） --- */
+    .topbar {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      width: min(1100px, 92vw); z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 800; }
+    .brand-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); }
+    .nav a { text-decoration: none; color: #fff; font-weight: 700; font-size: 14px; padding: 10px 12px; border-radius: 999px; }
+
+    /* --- メインコンテンツ --- */
+    .wrap { width: min(800px, 92vw); margin: 120px auto 60px; }
+    .page-title { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
+    .title-icon { width: 60px; height: auto; }
+
+    .form-container {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .form-group { margin-bottom: 24px; }
+    
+    label {
+      display: block; font-size: 13px; font-weight: 800; color: var(--accent);
+      margin-bottom: 8px; letter-spacing: 0.1em;
+    }
+    .required-tag {
+      background: var(--univ-red); color: #fff; font-size: 10px;
+      padding: 2px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle;
+    }
+
+    input, select, textarea {
+      width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 12px 16px; color: #fff; font-size: 16px; transition: 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: var(--accent); background: rgba(255,255,255,0.1);
+    }
+
+    select option { background: var(--bg); color: #fff; }
+
+    .char-count { text-align: right; font-size: 12px; opacity: 0.5; margin-top: 4px; }
+
+    /* 送信ボタン */
+    .submit-btn {
+      width: 100%; padding: 16px; border: none; border-radius: 12px;
+      background: var(--accent); color: #0b1220; font-size: 16px; font-weight: 900;
+      cursor: pointer; transition: 0.3s; margin-top: 20px;
+    }
+    .submit-btn:hover { background: #fff; transform: translateY(-2px); }
+    
+    /* 入力不足の時のスタイル */
+    input:invalid, textarea:invalid { border-color: rgba(255,255,255,0.15); }
+
+    @media (max-width: 640px) { .form-container { padding: 24px; } }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>KENSHO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="page-title">
+      <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="KENSHO Lab" class="title-icon">
+      <h1>お問い合わせ</h1>
+    </div>
+
+    <div class="form-container">
+      <!-- 
+        FormSubmit サービスを利用 
+        actionのURLにあなたのメールアドレスを指定します
+      -->
+      <form action="https://formsubmit.co/kensho.h@kokushikan.ac.jp" method="POST">
+        
+        <!-- 設定用隠しフィールド -->
+        <input type="hidden" name="_subject" value="【研究室サイト】新しいお問い合わせが届きました">
+        <input type="hidden" name="_next" value="https://main.d24snd0warhreg.amplifyapp.com/index.html"> <!-- 送信後のリダイレクト先 -->
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-group">
+          <label>お名前<span class="required-tag">必須</span></label>
+          <input type="text" name="お名前" placeholder="国士 太郎" required>
+        </div>
+
+        <div class="form-group">
+          <label>ご所属<span class="required-tag">必須</span></label>
+          <input type="text" name="所属" placeholder="株式会社〇〇 建設事業部 / 〇〇大学" required>
+        </div>
+
+        <div class="form-group">
+          <label>メールアドレス<span class="required-tag">必須</span></label>
+          <input type="email" name="email" placeholder="example@mail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>お問い合わせ項目<span class="required-tag">必須</span></label>
+          <select name="項目" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="共同研究のご相談">共同研究のご相談</option>
+            <option value="メディア出演のご依頼">メディア出演のご依頼</option>
+            <option value="出前講義のご依頼">出前講義のご依頼</option>
+            <option value="講演会出演のご依頼">講演会出演のご依頼</option>
+            <option value="研究室見学会">研究室見学</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>お問い合わせ内容<span class="required-tag">必須</span></label>
+          <textarea name="内容" rows="8" maxlength="500" placeholder="お問い合わせ内容をご記入ください（最大500文字）" required></textarea>
+          <div class="char-count">最大 500 文字</div>
+        </div>
+
+        <button type="submit" class="submit-btn">内容を確認して送信</button>
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>
