@@ -70,7 +70,7 @@
     }
 
     /* --- 左側：サイバーマップエリア --- */
-    .map-container {
+.map-container {
       position: relative;
       border-radius: 24px;
       overflow: hidden;
@@ -80,36 +80,48 @@
       background: #000;
     }
 
-    /* Google MapsをAIっぽく色反転させる魔法のCSS */
     .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      filter: grayscale(1) invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2);
-      opacity: 0.8;
+      /* 地図を少し暗く・青みがからせてサイトに馴染ませる */
+      filter: grayscale(0.5) invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2);
+      opacity: 0.85;
+      transition: 0.5s;
     }
 
-    /* マップ上のHUD装飾 */
+    /* マウスを乗せた時は、見やすいように元の色に少し近づける */
+    .map-container:hover iframe {
+      filter: grayscale(0.2) invert(0%) hue-rotate(0deg) brightness(1);
+      opacity: 1;
+    }
+
     .map-hud {
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      border: 20px solid transparent;
-      box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+      pointer-events: none; /* ←これが重要！地図の操作（拡大縮小など）を邪魔しません */
+      border: 1px solid rgba(62, 166, 255, 0.2);
     }
+
+    /* AI演出用のコーナー装飾 */
+    .corner-top-left {
+      position: absolute; top: 10px; left: 10px;
+      width: 30px; height: 30px;
+      border-top: 2px solid var(--accent); border-left: 2px solid var(--accent);
+    }
+    .corner-bottom-right {
+      position: absolute; bottom: 10px; right: 10px;
+      width: 30px; height: 30px;
+      border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent);
+    }
+
     .scan-line {
       position: absolute;
       width: 100%; height: 2px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       top: 0;
       animation: scan 4s linear infinite;
-      opacity: 0.3;
+      opacity: 0.2;
     }
-    @keyframes scan {
-      0% { top: 0; }
-      100% { top: 100%; }
-    }
-
+    @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+    
     /* --- 右側：インフォメーションパネル --- */
     .info-side {
       display: flex;
@@ -201,20 +213,28 @@
     </div>
 
     <div class="access-grid">
-      <!-- 左側：Google Map -->
+<!-- 左側：Google Map 埋め込み -->
       <section class="map-container">
         <!-- 
-          Google Maps Embed API 
-          提供されたURLに基づき、国士舘大学世田谷キャンパスを表示
+          公式の埋め込みコードをベースにしています。
+          APIキー不要で無料で利用できる正規の方法です。
         -->
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3242.234327293156!2d139.65155707635957!3d35.64787813154868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f379b20df41f%3A0xfbeff0750a61cafe!2z5Zu95aOr6aSo5aSn5a2m!5e0!3m2!1sja!2sjp!4v1711080000000!5m2!1sja!2sjp" 
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.234327293156!2d139.65155707635957!3d35.64787813154868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f379b20df41f%3A0xfbeff0750a61cafe!2z5Zu95aOr6aSo5aSn5a2m!5e0!3m2!1sja!2sjp!4v1711080000000!5m2!1sja!2sjp" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
         
-        <!-- HUD装飾（走査線アニメーション） -->
+        <!-- マップの上に重ねるサイバー演出（クリックを邪魔しない設定） -->
         <div class="map-hud">
           <div class="scan-line"></div>
+          <!-- 隅に装飾用の枠線を追加 -->
+          <div class="corner-top-left"></div>
+          <div class="corner-bottom-right"></div>
         </div>
       </section>
 
