@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>送信完了 | KENSHO Lab</title>
+  <style>
+    :root { --bg: #0b1220; --glass: rgba(255,255,255,0.08); --accent: #3ea6ff; }
+    body {
+      margin: 0; font-family: "Noto Sans JP", sans-serif;
+      background: var(--bg); color: #fff;
+      display: flex; align-items: center; justify-content: center; height: 100vh;
+      text-align: center;
+    }
+    .container {
+      background: var(--glass); border: 1px solid rgba(255,255,255,0.15);
+      padding: 60px 40px; border-radius: 24px; backdrop-filter: blur(12px);
+      width: min(500px, 90vw);
+    }
+    .icon { width: 80px; margin-bottom: 20px; }
+    h1 { font-size: 20px; margin-bottom: 24px; line-height: 1.6; }
+    .btn {
+      display: inline-block; padding: 12px 30px; background: var(--accent);
+      color: #0b1220; text-decoration: none; border-radius: 12px; font-weight: 900;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #fff; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" class="icon">
+    <h1>お問い合わせを受け付けました。<br>折り返しご連絡いたしますので、<br>今しばらくお待ちください。</h1>
+    <a href="index.html" class="btn">ホーム画面に戻る</a>
+  </div>
+</body>
+</html>
