@@ -111,38 +111,6 @@
       width: 30px; height: 30px;
       border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent);
     }
-
-    .scan-line {
-      position: absolute;
-      width: 100%; 
-      /* 厚みを持たせて「光のカーテン」のような余韻を作る */
-      height: 80px; 
-      /* 上から下へ：透明 → ほんのり青 → 鋭い白青（レーザーの核） → 透明 */
-      background: linear-gradient(to bottom, 
-        transparent, 
-        rgba(62, 166, 255, 0.1), 
-        var(--accent), /* レーザーの先端 */
-        transparent
-      );
-      /* レーザーの先端に鋭いラインを追加 */
-      border-bottom: 2px solid #fff; 
-      /* 周囲にネオンのような光の広がり（グロー効果）を追加 */
-      box-shadow: 0 4px 20px rgba(62, 166, 255, 0.8);
-      
-      /* 初期位置を枠の外に設定 */
-      top: -80px;
-      /* アニメーション：速度を少し上げ、動きに緩急(ease-in-out)をつけてリアルに */
-      animation: scan 3s ease-in-out infinite;
-      opacity: 1; /* 透明度を100%にしてハッキリ見せる */
-      z-index: 10;
-    }
-
-    @keyframes scan {
-      0% { top: -80px; opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { top: 100%; opacity: 0; }
-    }
     
     /* --- 右側：インフォメーションパネル --- */
     .info-side {
@@ -253,7 +221,6 @@
         
         <!-- マップの上に重ねるサイバー演出（クリックを邪魔しない設定） -->
         <div class="map-hud">
-          <div class="scan-line"></div>
           <!-- 隅に装飾用の枠線を追加 -->
           <div class="corner-top-left"></div>
           <div class="corner-bottom-right"></div>
