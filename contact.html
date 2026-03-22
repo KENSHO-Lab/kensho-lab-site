@@ -111,6 +111,18 @@
       .form-container { padding: 24px; }
       .btn-group { flex-direction: column-reverse; }
     }
+
+    /* プルダウンの選択肢（背景を濃くして文字を白くする） */
+    select option {
+      background-color: #1a2638; /* 視認性の高い濃い紺色 */
+      color: #ffffff;           /* 文字色を白に固定 */
+    }
+
+    /* 一部のブラウザで背景が白くなる現象への対策 */
+    select:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
   </style>
 </head>
 <body>
