@@ -3,38 +3,38 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lab Member | KENSHO Lab</title>
+  <title>Lab Members | KENSHO Lab</title>
 
   <style>
     :root{
       --bg:#0b1220;
-      --glass: rgba(255,255,255,0.14);
-      --glass2: rgba(255,255,255,0.18);
-      --border: rgba(255,255,255,0.22);
+      --glass: rgba(255,255,255,0.12);
+      --glass-bright: rgba(255,255,255,0.18);
+      --border: rgba(255,255,255,0.18);
       --shadow: 0 18px 60px rgba(0,0,0,0.25);
+      --accent: #3ea6ff;
     }
+
     body{
       margin:0;
-      font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: var(--bg);
+      font-family:"Noto Sans JP", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 10%, rgba(62,166,255,0.12), rgba(11,18,32,1) 55%);
       color:#fff;
       overflow-x:hidden;
     }
 
-    /* ===== 固定ヘッダー（Researchと同じ雰囲気） ===== */
+    /* ===== 固定ヘッダー（共通） ===== */
     .topbar{
       position: fixed;
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
       width: min(1100px, 92vw);
-      z-index: 50;
-
+      z-index: 100;
       display:flex;
       align-items:center;
       justify-content: space-between;
       gap: 12px;
-
       padding: 10px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,0.14);
@@ -44,199 +44,126 @@
       box-shadow: var(--shadow);
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding-left: 6px;
-      color:#fff;
-      text-decoration:none;
-      font-weight:800;
-      letter-spacing:.04em;
-      white-space:nowrap;
+      display:flex; align-items:center; gap:10px; padding-left: 6px;
+      color:#fff; text-decoration:none; font-weight:800; letter-spacing:.04em;
     }
     .brand-dot{
-      width:10px;height:10px;border-radius:999px;background:#3ea6ff;
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
       box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
     }
-    .nav{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+    .nav{ display:flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
     .nav a{
-      text-decoration:none;
-      color:#fff;
-      font-weight:700;
-      font-size: 14px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      transition: .2s;
+      text-decoration:none; color:#fff; font-weight:700; font-size: 14px;
+      padding: 10px 12px; border-radius: 999px; transition: .2s;
     }
     .nav a:hover{ background: rgba(255,255,255,0.18); }
-    .nav a.active{
-      background: rgba(255,255,255,0.24);
-      border: 1px solid rgba(255,255,255,0.22);
-    }
+    .nav a.active{ background: rgba(255,255,255,0.24); border: 1px solid rgba(255,255,255,0.22); }
 
-    .page{
-      min-height: 100vh;
-      padding-top: 100px;
-      padding-bottom: 60px;
-    }
-
-    .hero{
+    /* ===== ページ全体構成 ===== */
+    .page-wrap{
       width: min(1100px, 92vw);
-      margin: 0 auto;
-      padding: 22px 0 12px;
+      margin: 100px auto 60px;
     }
-    .kicker{
-      opacity:.85;
-      letter-spacing:.10em;
-      font-weight:700;
-      font-size: 13px;
-    }
-    .page-title{
-      display:flex;
-      align-items:center;
-      gap: 14px;
-      margin: 10px 0 8px;
-      font-size: clamp(28px, 4.0vw, 46px);
-      letter-spacing: .04em;
+
+    .kicker{ opacity:.85; letter-spacing:.10em; font-weight:700; font-size: 13px; }
+    h1{ margin: 10px 0 40px; font-size: clamp(28px, 4.0vw, 44px); letter-spacing: .04em; }
+
+    .section-title{
+      font-size: 20px;
       font-weight: 800;
-    }
-    .title-icon{
-      width: 70px;
-      height: auto;
-      opacity: .92;
-      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.25));
-    }
-    .lead{
-      margin:0;
-      opacity:.86;
-      line-height:1.8;
+      margin: 60px 0 24px;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+      letter-spacing: 0.1em;
     }
 
-    /* ===== 宇宙キャンバス ===== */
-    .space{
-      width: min(1100px, 92vw);
-      margin: 18px auto 0;
-      position: relative;
-      aspect-ratio: 16/9;
-      border-radius: 22px;
+    /* ===== メンバーグリッド ===== */
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 820px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+
+    /* 共通カードスタイル */
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
 
-      background: #0a0f1a;
-      background-image: url("https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%AE%87%E5%AE%99.png");
+    /* 教員カード（クリック可能） */
+    .faculty-link{
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: fit-content;
+      transition: 0.3s;
+    }
+    .faculty-link:hover{
+      transform: translateY(-5px);
+    }
+    .faculty-link:hover .card{
+      border-color: var(--accent);
+      background: var(--glass-bright);
+    }
+    .boss-card{ width: 220px; } /* 教員は少し横幅を固定 */
+
+    .photo{
+      aspect-ratio: 4/5;
+      background-color: rgba(255,255,255,0.05);
       background-size: cover;
       background-position: center;
+    }
+    .meta{ padding: 14px; line-height: 1.6; }
+    .name{ font-weight: 900; font-size: 16px; margin: 0 0 6px; }
+    .info-line{ margin: 0; opacity: 0.85; font-size: 12px; }
+    .tag{ font-weight: 700; color: var(--accent); margin-right: 4px; }
+    .click-hint{ margin-top: 8px; font-size: 11px; font-weight: 800; color: var(--accent); opacity: 0.9; }
 
-      border: 1px solid rgba(255,255,255,0.16);
-      box-shadow: 0 20px 70px rgba(0,0,0,0.30);
+    /* ===== アーカイブ（集合写真）セクション ===== */
+    .archive-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
-    .space::before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), rgba(0,0,0,0.55));
-      pointer-events:none;
-    }
+    @media (max-width: 640px){ .archive-grid{ grid-template-columns: 1fr; } }
 
-    /* 惑星ポイント（ホットスポット） */
-    .planet{
-      position:absolute;
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      outline: none;
-
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.22);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+    .archive-link{
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
     }
-    .planet::after{
-      content:"";
-      position:absolute; inset: 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.28);
-      box-shadow: 0 0 0 10px rgba(62,166,255,0.10);
+    .archive-card{
+      position: relative;
     }
-    .planet:hover{ transform: translate(-50%, -50%) scale(1.06); }
-
-    /* BOSS（金色の六芒星） */
-    .boss-star {
-      background: linear-gradient(135deg, #ffd700, #ffae00) !important;
-      /* 六芒星の形に切り抜き */
-      clip-path: polygon(50% 0%, 65% 25%, 100% 25%, 80% 50%, 100% 75%, 65% 75%, 50% 100%, 35% 75%, 0% 75%, 20% 50%, 0% 25%, 35% 25%);
-      width: 70px !important;
-      height: 70px !important;
-      border: none !important;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6) !important;
+    .archive-photo{
+      aspect-ratio: 16/9; /* 集合写真は横長 */
+      background-color: rgba(255,255,255,0.05);
+      background-size: cover;
+      background-position: center;
     }
-    .boss-star::after { display: none; }
-
-    /* 現役星（赤色のポインター） */
-    .active-star {
-      background: rgba(220, 38, 38, 0.2) !important;
-      border: 2px solid #ff4b2b !important;
-      box-shadow: 0 0 25px rgba(220, 38, 38, 0.5) !important;
-    }
-    .active-star::after {
-      background: #ff4b2b !important;
-      box-shadow: 0 0 15px rgba(255, 75, 43, 0.8) !important;
-    }
-    
-    /* 吹き出し */
-    .bubble{
-      position:absolute;
-      opacity: 0;
-      visibility: hidden;
-      transition: .18s;
-      transform: translate(20px, 18px);
-
-      display: inline-block;
-      width: auto;
-      max-width: 80vw;
-      white-space: nowrap;
-      background: var(--glass2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px 14px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.30);
-      color:#fff;
-    }
-    .bubble .label{
+    .archive-label{
+      padding: 16px;
       font-weight: 900;
-      letter-spacing: .08em;
-      margin: 0 0 6px;
       font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .bubble .desc{
-      margin:0;
-      opacity:.9;
-      line-height:1.7;
-      font-size: 15px;
-    }
+    .archive-link:hover{ transform: translateY(-5px); }
+    .archive-link:hover .card{ border-color: var(--accent); }
 
-    /* ホバー時だけ表示 */
-    .planet:hover + .bubble,
-    .planet:focus + .bubble{
-      opacity: 1;
-      visibility: visible;
-    }
-
-    @media (max-width: 640px){
-      .planet{ width: 58px; height: 58px; }
-    }
   </style>
 </head>
 
 <body>
+  <!-- 固定ヘッダー -->
   <header class="topbar">
     <a class="brand" href="index.html"><span class="brand-dot"></span>HIRAO Lab</a>
     <nav class="nav">
@@ -249,52 +176,73 @@
     </nav>
   </header>
 
-  <main class="page">
-    <section class="hero">
-      <div class="kicker">LAB MEMBERS</div>
-      <h1 class="page-title">
-        <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="KENSHO Lab" class="title-icon">
-        研究室メンバー
-      </h1>
-      <p class="lead">
-        惑星にカーソルを合わせると期別が表示されます。クリックすると各メンバーのプロフィールを確認できます。
-      </p>
+  <main class="page-wrap">
+    <div class="kicker">LAB MEMBERS</div>
+    <h1>研究室メンバー</h1>
+
+    <!-- 教員セクション -->
+    <section>
+      <div class="section-title">Faculty</div>
+      <a href="members-boss.html" class="faculty-link">
+        <article class="card boss-card">
+          <div class="photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F1.jpg')"></div>
+          <div class="meta">
+            <p class="name">平尾 賢生</p>
+            <p class="info-line"><span class="tag">役職：</span>講師</p>
+            <p class="info-line"><span class="tag">趣味：</span>筋トレ、サーフィン</p>
+            <p class="click-hint">＊クリックで詳細ページへ</p>
+          </div>
+        </article>
+      </a>
     </section>
 
-    <section class="space" aria-label="Space illustration with planets">
-    <!-- BOSS（金色の星にクラス変更） -->
-      <a class="planet boss-star" href="members-boss.html"
-         style="left:50%; top:40%;" aria-label="BOSS"></a>
-      <div class="bubble" style="left:50%; top:40%;">
-        <div class="label">BOSS</div>
-        <p class="desc">教員紹介</p>
-      </div>
+    <!-- 現役メンバーセクション -->
+    <section>
+      <div class="section-title">Current Members</div>
+      <div class="grid">
+        <!-- メンバー01（見本。ここをコピーして人数分増やす） -->
+        <article class="card">
+          <div class="photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/No_photo.png')"></div>
+          <div class="meta">
+            <p class="name">メンバー氏名</p>
+            <p class="info-line"><span class="tag">学年：</span>学部4年</p>
+            <p class="info-line"><span class="tag">研究：</span>テーマ未定</p>
+            <p class="info-line"><span class="tag">趣味：</span>読書</p>
+          </div>
+        </article>
 
-      <!-- 現役星（新しく追加：BOSSの下 top:70% に配置） -->
-      <a class="planet active-star" href="members-current.html"
-         style="left:75%; top:70%;" aria-label="現役星"></a>
-      <div class="bubble" style="left:50%; top:70%;">
-        <div class="label">現役星</div>
-        <p class="desc">現役メンバー一覧</p>
+        <!-- メンバー追加分（仮） -->
+        <article class="card"><div class="photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/No_photo.png')"></div><div class="meta"><p class="name">メンバー氏名</p><p class="info-line"><span class="tag">学年：</span>学部4年</p><p class="info-line"><span class="tag">研究：</span>テーマ未定</p><p class="info-line"><span class="tag">趣味：</span>旅行</p></div></article>
+        <article class="card"><div class="photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/No_photo.png')"></div><div class="meta"><p class="name">メンバー氏名</p><p class="info-line"><span class="tag">学年：</span>学部4年</p><p class="info-line"><span class="tag">研究：</span>テーマ未定</p><p class="info-line"><span class="tag">趣味：</span>スポーツ</p></div></article>
       </div>
+    </section>
 
-      <!-- 1期星（例：中央左） -->
-      <a class="planet" href="members-1st.html"
-         style="left:10%; top:10%;" aria-label="1期星"></a>
-      <div class="bubble" style="left:10%; top:10%;">
-        <div class="label">1期星</div>
-        <p class="desc">1期生メンバー一覧</p>
+    <!-- アーカイブセクション（各期の集合写真） -->
+    <section>
+      <div class="section-title">Archives</div>
+      <div class="archive-grid">
+        <!-- 1期生アーカイブ -->
+        <a href="members-1st.html" class="archive-link">
+          <article class="card archive-card">
+            <div class="archive-photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/No_photo.png')"></div>
+            <div class="archive-label">
+              <span>1期生</span>
+              <span style="font-size: 14px; opacity: 0.6;">View Members →</span>
+            </div>
+          </article>
+        </a>
+
+        <!-- 2期生アーカイブ -->
+        <a href="members-2nd.html" class="archive-link">
+          <article class="card archive-card">
+            <div class="archive-photo" style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/No_photo.png')"></div>
+            <div class="archive-label">
+              <span>2期生</span>
+              <span style="font-size: 14px; opacity: 0.6;">View Members →</span>
+            </div>
+          </article>
+        </a>
       </div>
-
-      <!-- 2期星（例：中央） -->
-      <a class="planet" href="members-2nd.html"
-         style="left:25%; top:10%;" aria-label="2期星"></a>
-      <div class="bubble" style="left:25%; top:10%;">
-        <div class="label">2期星</div>
-        <p class="desc">2期生メンバー一覧</p>
-      </div>
-
-      <!-- 追加したくなったら同じセットを増やすだけ -->
     </section>
   </main>
 </body>
