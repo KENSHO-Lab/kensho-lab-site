@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publications | KENSHO Lab</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.08);
+      --glass-bright: rgba(255,255,255,0.14);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --accent: #3ea6ff;
+    }
+
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color:#fff;
+      /* AIっぽさを出すための背景装飾 */
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(62, 166, 255, 0.05), transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(62, 166, 255, 0.05), transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* ===== 固定ヘッダー（共通） ===== */
+    .topbar{
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92vw);
+      z-index: 100;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; padding-left: 6px;
+      color:#fff; text-decoration:none; font-weight:800; letter-spacing:.04em;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+    .nav{ display:flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a{
+      text-decoration:none; color:#fff; font-weight:700; font-size: 14px;
+      padding: 10px 12px; border-radius: 999px; transition: .2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+
+    /* ===== メインコンテンツ ===== */
+    .wrap{
+      width: min(1000px, 92vw);
+      margin: 120px auto 80px;
+    }
+
+    .header-area{
+      margin-bottom: 60px;
+    }
+    .kicker{
+      opacity:.85; letter-spacing:.15em; font-weight:800; font-size: 13px; color: var(--accent);
+    }
+    .page-title{
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 10px 0;
+    }
+    .page-title h1{
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+    .title-icon{
+      width: 60px; height: auto;
+      filter: drop-shadow(0 8px 20px rgba(62,166,255,0.3));
+    }
+
+    /* ===== 論文リストのデザイン ===== */
+    .paper-list{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .paper-card{
+      position: relative;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 30px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: 0.3s ease;
+      display: flex;
+      gap: 20px;
+    }
+    
+    .paper-card:hover{
+      background: var(--glass-bright);
+      border-color: var(--accent);
+      transform: translateX(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    /* 番号と年 */
+    .paper-meta{
+      flex: 0 0 80px;
+      text-align: center;
+    }
+    .paper-index{
+      font-size: 14px;
+      font-weight: 800;
+      opacity: 0.4;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .paper-year{
+      background: var(--accent);
+      color: #0b1220;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* 論文の中身 */
+    .paper-info{
+      flex: 1;
+    }
+    .paper-authors{
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.7);
+    }
+    .paper-title-text{
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .paper-journal{
+      font-size: 13px;
+      font-style: italic;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 640px){
+      .paper-card{ flex-direction: column; gap: 10px; padding: 20px; }
+      .paper-meta{ text-align: left; flex: none; display: flex; align-items: center; gap: 15px; }
+      .paper-index{ margin-bottom: 0; }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 固定ヘッダー -->
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>HIRAO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="header-area">
+      <div class="kicker">PUBLICATIONS</div>
+      <div class="page-title">
+        <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="KENSHO Lab" class="title-icon">
+        <h1>研究論文一覧</h1>
+      </div>
+    </div>
+
+    <section class="paper-list">
+      
+      <!-- 論文 [1] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[1]</span>
+          <span class="paper-year">2026</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">Xinda Zhu, Kensho Hirao</div>
+          <p class="paper-title-text">Quantitative Evaluation of Bolt Rotation Angle for Automatic Detection of Untightened Bolts in Steel Bridges</p>
+          <div class="paper-journal">IABSE Symposium 2026, 2026.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [2] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[2]</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">Kensho HIRAO, Hiroshi TAMURA</div>
+          <p class="paper-title-text">Experimental Study on the Rotational Loosening Mechanism of High-Strength Bolts under Service</p>
+          <div class="paper-journal">IABSE Symposium 2025, 1(118), 2025.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [3] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[3]</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">藤田光，田村洋，平尾賢生</div>
+          <p class="paper-title-text">リーブ硬さを用いた鋼部材の応力評価に関する基礎的検討</p>
+          <div class="paper-journal">鋼構造年次論文報告集，Vol. 33，pp. 863-876，2025.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [4] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[4]</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">山西崚斗，平尾賢生，田村洋</div>
+          <p class="paper-title-text">フリクションシムを用いた高力ボルト摩擦接合部のすべり係数向上に関する検討</p>
+          <div class="paper-journal">鋼構造年次論文報告集，Vol. 33，pp. 256-268，2025.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [5] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[5]</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">土橋麟太郎，田村洋，平尾賢生</div>
+          <p class="paper-title-text">引張荷重を受ける CFRP 接着鋼材上のひずみ分布測定と CFRP 剥離開始条件の考察</p>
+          <div class="paper-journal">鋼構造年次論文報告集，Vol. 33，pp. 140-152，2025.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [6] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[6]</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">Ryudo KASHIMA, Kensho HIRAO, Hiroshi TAMURA</div>
+          <p class="paper-title-text">Improvement of Positioning Accuracy of Augmented Reality Bridge Inspection Support System</p>
+          <div class="paper-journal">IABSE Symposium 2025, 1(57), 2025.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [7] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[7]</span>
+          <span class="paper-year">2025</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">Hikaru FUJITA, Hiroshi TAMURA, Kensho HIRAO, Hiroshi KATSUCHI, Jiaqi WANG</div>
+          <p class="paper-title-text">Effect of Biaxial Stress State of Steel Members on Leeb Hardness Test Results</p>
+          <div class="paper-journal">IABSE Young Engineers Colloquium, 2025.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [8] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[8]</span>
+          <span class="paper-year">2024</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">大和太仁，田村洋，平尾賢生，王嘉奇，勝地弘</div>
+          <p class="paper-title-text">構造用鋼材に正負交番の弾塑性ひずみ履歴を大振幅で導入する実験方法</p>
+          <div class="paper-journal">鋼構造年次論文報告集，Vol. 32，pp. 860-869，2024.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [9] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[9]</span>
+          <span class="paper-year">2024</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">平尾賢生，Quang Vy Tran，田村洋</div>
+          <p class="paper-title-text">ディスク型フリクションシムを挿入した異種接合面高力ボルト継手のすべり耐力評価</p>
+          <div class="paper-journal">構造工学論文集，Vol. 70A，pp. 61-74，2024.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [10] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[10]</span>
+          <span class="paper-year">2023</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">Phan Duc Tam, Hiroshi Katsuchi, Wang Jiaqi, Hiroshi Tamura, Kensho Hirao</div>
+          <p class="paper-title-text">A study on stabilizing mechanism of flap countermeasures mitigating VIV of a box girder bridge section</p>
+          <div class="paper-journal">IOP Conference Series: Materials Science and Engineering, Vol. 1289, No. 1, pp. 1-15, 2023.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [11] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[11]</span>
+          <span class="paper-year">2022</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">Kensho Hirao, Eiichi Sasaki, Yuichi Ito, Kouichi Takeya, Keigo Suzuki, Katumi Morita</div>
+          <p class="paper-title-text">Proposal of ultrasonic bolt axial force evaluation method using machine learning and signal processing</p>
+          <div class="paper-journal">IABSE Symposium 2022, 2022.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [12] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[12]</span>
+          <span class="paper-year">2022</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">平尾賢生，佐々木栄一，伊藤裕一，竹谷晃一，阿久津絢子</div>
+          <p class="paper-title-text">機械学習を援用した超音波計測による鋼板裏面及び高力ボルト摩擦接合継手接合面の塗膜厚さ評価の試み</p>
+          <div class="paper-journal">土木学会論文集 A1(構造・地震工学)，Vol. 78，No. 3，pp. 508-519，2022.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [13] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[13]</span>
+          <span class="paper-year">2022</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">平尾賢生，鈴木啓悟，森田勝実，伊藤裕一，竹谷晃一，佐々木栄一</div>
+          <p class="paper-title-text">計測波形分析への機械学習適用による高力ボルト軸力の超音波評価</p>
+          <div class="paper-journal">土木学会論文集 A1(構造・地震工学)，Vol. 78，No. 1，pp. 108-120，2022.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [14] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[14]</span>
+          <span class="paper-year">2020</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">田村洋，南邦明，吉岡夏樹，内田大介，茂呂充，濱達矢，平尾賢生</div>
+          <p class="paper-title-text">仕様の異なる接触面を含む高力ボルト摩擦接合継手の適用性</p>
+          <div class="paper-journal">土木学会論文集 A1(構造・地震工学)，Vol. 76，No. 2，pp. 255-274，2020.</div>
+        </div>
+      </article>
+
+      <!-- 論文 [15] -->
+      <article class="paper-card">
+        <div class="paper-meta">
+          <span class="paper-index">[15]</span>
+          <span class="paper-year">2017</span>
+        </div>
+        <div class="paper-info">
+          <div class="paper-authors">平尾賢生，鈴木啓悟，木村定雄，北隆之介，森山守</div>
+          <p class="paper-title-text">アスファルト舗装面からの探傷による RC 床版内の水平ひび割れ検出</p>
+          <div class="paper-journal">応用力学論文集，Vol. 73，No. 2，pp.I_739-I_746，2017.</div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+</body>
+</html>
