@@ -39,8 +39,8 @@
 
     /* ロゴ＋文字の“白い帯”（透明） */
     .hero-band{
-      width: min(650px, 80vw); /* 横並びにするため幅を少し広げました */
-      padding: 40px 20px;
+      width: min(780px, 92vw); /* 幅を少し広げて安定させました */
+      padding: 40px 30px;
       border-radius: 22px;
     
       background: rgba(255,255,255,0.12);
@@ -56,20 +56,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px; /* ロゴと文字の間隔 */
+      flex-direction: row; /* パソコンでは確実に横並び */
+      gap: 24px;
       margin-bottom: 20px;
-      text-align: center; /* ←中央揃えに変更 */
     }
     
     .k-logo {
-      width: clamp(80px, 12vw, 130px); /* ロゴのサイズを調整 */
+      width: clamp(80px, 12vw, 130px);
       height: auto;
       filter: drop-shadow(0 8px 25px rgba(0,0,0,0.2));
+      flex-shrink: 0; /* ロゴが潰れないように固定 */
     }
 
     .text-group {
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .university {
@@ -77,8 +79,14 @@
       font-size: clamp(20px, 3.2vw, 34px);
       font-weight: 800;
       letter-spacing: 0.05em;
-      color: #b02127; /* 深い赤色（国士舘レッド） */
+      color: #b02127; /* 深い赤色 */
       line-height: 1.2;
+      /* 黒い縁取りを追加 */
+      text-shadow: 
+        1px 1px 0 #000, -1px 1px 0 #000, 
+        1px -1px 0 #000, -1px -1px 0 #000,
+        0px 1px 0 #000, 0px -1px 0 #000,
+        1px 0px 0 #000, -1px 0px 0 #000;
     }
     
     .catchcopy {
@@ -126,7 +134,7 @@
       transform: translateY(-1px);
     }
 
-/* ボタンを横並びにするコンテナ */
+    /* ボタン */
     .button-group {
       display: flex;
       gap: 12px;
@@ -149,20 +157,18 @@
       transform: translateY(-2px);
     }
 
-    /* スマホではボタンを縦に並べる */
+    /* ===== スマホ対応の設定 ===== */
     @media (max-width: 640px) {
+      .brand-container {
+        flex-direction: column; /* スマホの時だけ縦並び */
+        text-align: center;
+        gap: 12px;
+      }
       .button-group {
         flex-direction: column;
         width: 100%;
       }
       .button { text-align: center; }
-    }
-
-      .brand-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-      }
       .main-nav{
         flex-wrap: wrap;
         justify-content: center;
@@ -200,10 +206,10 @@
           <a href="access.html">Access</a>
         </nav>
 
-     <div class="button-group">
-      <a href="contact.html" class="button">共同研究のご相談</a>
-      <a href="contact.html" class="button">その他お問い合わせ</a>
-     </div>
+        <div class="button-group">
+          <a href="contact.html" class="button">共同研究のご相談</a>
+          <a href="contact.html" class="button">その他お問い合わせ</a>
+        </div>
 
       </div>
     </div>
