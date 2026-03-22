@@ -37,39 +37,57 @@
       z-index: 1;
     }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 20px;
-      border-left: 4px solid #3ea6ff;
-      padding-left: 12px;
-    }
-
     /* ロゴ＋文字の“白い帯”（透明） */
     .hero-band{
-      width: min(600px, 80vw);
-      padding: 40px 20px;
+      width: min(780px, 92vw); /* 横並びにするため幅を少し広げました */
+      padding: 40px 30px;
       border-radius: 22px;
     
-      background: rgba(255,255,255,0.12);  /* 少し薄く */
+      background: rgba(255,255,255,0.12);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     
       border: 1px solid rgba(255,255,255,0.35);
       box-shadow: 0 20px 70px rgba(0,0,0,0.35);
     }
+
+    /* ロゴとテキストを横に並べるコンテナ */
+    .brand-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px; /* ロゴと文字の間隔 */
+      margin-bottom: 20px;
+      text-align: left; /* テキストを左揃えに */
+    }
     
-    .logo{
-      width: min(420px, 70vw);
+    .k-logo {
+      width: clamp(80px, 12vw, 130px); /* ロゴのサイズを調整 */
       height: auto;
-      display: block;
-      margin: 0 auto 15px;   /* ←ロゴ下の余白を小さくする */
-      filter: drop-shadow(0 10px 40px rgba(0,0,0,.45));
+      filter: drop-shadow(0 8px 25px rgba(0,0,0,0.2));
+    }
+
+    .text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .university {
+      margin: 0;
+      font-size: clamp(20px, 3.2vw, 34px);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #b02127; /* 深い赤色（国士舘レッド） */
+      line-height: 1.2;
+    }
+    
+    .catchcopy {
+      margin-top: 6px;
+      font-size: clamp(16px, 2.5vw, 24px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #0b1220;
+      opacity: 0.9;
     }
 
     .center-layout{
@@ -78,10 +96,11 @@
       align-items:center;
     }
     
+    /* ナビゲーション */
     .main-nav{
       display:flex;
       gap: 10px;
-      margin: 16px 0 8px 0;
+      margin: 10px 0 12px 0;
       padding: 8px;
       border-radius: 999px;
       background: rgba(11,18,32,0.10);
@@ -91,7 +110,7 @@
     }
     
     .main-nav a{
-      padding: 10px 14px;
+      padding: 10px 16px;
       border-radius: 999px;
       text-decoration:none;
       color:#0b1220;
@@ -107,85 +126,72 @@
       transform: translateY(-1px);
     }
 
-  /* ボタン（白帯の上で映えるように濃色に上書き） */
-  .button{
+    .button{
       margin-top: 6px;
-      padding: 12px 20px;
+      padding: 12px 24px;
       border-radius: 12px;
       display: inline-block;
       text-decoration: none;
-
       background: rgba(11,18,32,0.88);
       color: #ffffff;
-      border: 1px solid rgba(11,18,32,0.25);
-    }
-  .button:hover{
-      background: rgba(11,18,32,0.98);
-    }
-
-    .university{
-      margin-top: 0;
-      font-size: clamp(22px, 3.2vw, 32px);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: #0b1220;
-      line-height: 1.2;       /* 行間調整 */
-      margin-bottom: 10px;    /* キャッチコピーとの間隔 */
-    }
-    
-    .catchcopy {
-      margin-top: 5px;
-      font-size: clamp(18px, 2.8vw, 28px); /* 大学名より少しだけ控えめにすると綺麗です */
       font-weight: 700;
-      letter-spacing: 0.08em;
-      color: #0b1220;
-      opacity: 0.9;
+      border: 1px solid rgba(11,18,32,0.25);
+      transition: 0.3s;
+    }
+    .button:hover{
+      background: #0b1220;
+      transform: scale(1.02);
     }
 
+    /* スマホ対応：画面が狭いときは縦並びに戻す */
     @media (max-width: 640px){
+      .brand-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
       .main-nav{
         flex-wrap: wrap;
         justify-content: center;
         border-radius: 18px;
       }
     }    
-
   </style>
 </head>
 
 <body>
 
-  <!-- ===== トップ動画セクション ===== -->
   <div class="hero">
-    <video autoplay muted loop>
+    <video autoplay muted loop playsinline>
       <source src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%B1%A0%E9%96%93%E5%A4%A7%E6%A9%8B.mp4" type="video/mp4">
     </video>
 
-<div class="hero-content">
-  <div class="hero-band center-layout">
+    <div class="hero-content">
+      <div class="hero-band center-layout">
 
-    <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B43.png" alt="KENSHO Lab" class="logo">
+        <!-- ロゴとテキストの横並びエリア -->
+        <div class="brand-container">
+          <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="K Logo" class="k-logo">
+          
+          <div class="text-group">
+            <div class="university">国士舘大学 建設DX研究室</div>
+            <div class="catchcopy">橋を、知能で進化させる。</div>
+          </div>
+        </div>
 
-<div class="university">
-  国士舘大学 建設DX研究室
-</div>
+        <nav class="main-nav">
+          <a href="research.html">Research</a>
+          <a href="members.html">Lab Members</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="news.html">News</a>
+          <a href="#access">Access</a>
+        </nav>
 
-<div class="catchcopy">
-  橋を、知能で進化させる。
-</div>
+        <a href="#industry" class="button">共同研究のご相談</a>
 
-    <nav class="main-nav">
-      <a href="research.html">Research</a>
-      <a href="members.html">Lab Members</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="news.html">News</a>
-      <a href="#access">Access</a>
-    </nav>
-
-    <a href="#industry" class="button">共同研究のご相談</a>
-
+      </div>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
