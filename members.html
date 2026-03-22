@@ -143,18 +143,38 @@
     }
     .meta{ padding: 14px; line-height: 1.6; }
     .name{ font-weight: 900; font-size: 16px; margin: 0 0 6px; }
-    .info-line{ margin: 0; opacity: 0.85; font-size: 12px; }
-    .tag{ 
-      font-weight: 700; 
-      color: #b02127; /* 深い赤色に変更 */
+/* --- 項目（学年、趣味など）の共通設定 --- */
+    .tag { 
+      font-weight: 800; /* 項目名を少し太くして目立たせる */
       margin-right: 4px; 
     }
-   .click-hint{ 
+
+    /* --- 1. 教員（BOSS）の設定 --- */
+    /* ラベル（役職、趣味）を黒色に */
+    .boss-card .tag {
+      color: #000000;
+    }
+    /* 注釈（クリックで詳細へ）も黒色に */
+    .boss-card .click-hint { 
       margin-top: 8px; 
       font-size: 11px; 
       font-weight: 800; 
-      color: #b02127; /* ここも赤色に合わせる場合 */
-      opacity: 0.9; 
+      color: #000000; 
+      opacity: 0.8; 
+    }
+
+    /* --- 2. 学生（Current Members）の設定 --- */
+    /* ラベル（学年、研究、趣味）を青色に */
+    .grid .tag {
+      color: #3ea6ff;
+    }
+
+    /* --- 3. 内容（講師、学部4年、読書など）の設定 --- */
+    .info-line { 
+      margin: 0; 
+      font-size: 12px; 
+      color: #ffffff; /* 内容ははっきりとした白色に固定 */
+      opacity: 1;     /* 透明度をなくして白を際立たせる */
     }
 
     /* ===== アーカイブ（集合写真）セクション ===== */
