@@ -255,6 +255,47 @@
     /* 位置指定：山（例。画像に合わせて調整） */
     .hs-mountain{ left: 12%; top: 14%; }
     .b-mountain{ left: 12%; top: 14%; }
+
+/* --- 追加：研究論文一覧ボタンのデザイン --- */
+    .hero-container {
+      position: relative; /* ボタンを右上に配置するための基準 */
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+    }
+
+    .btn-papers {
+      position: absolute;
+      top: 22px;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(62, 166, 255, 0.15); /* 研究室カラーの薄い青 */
+      border: 1px solid rgba(62, 166, 255, 0.4);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.3s;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .btn-papers:hover {
+      background: rgba(62, 166, 255, 0.3);
+      border-color: rgba(62, 166, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* スマホでは見出しの下に配置するように調整 */
+    @media (max-width: 640px) {
+      .hero-container { display: flex; flex-direction: column; }
+      .btn-papers { position: static; margin-top: 15px; width: fit-content; }
+    }
     
   </style>
 </head>
@@ -273,18 +314,25 @@
     </nav>
   </header>
 
-  <main class="page">
+<main class="page">
     <section class="hero">
-      <div class="kicker">RESEARCH</div>
-      <h1 class="page-title">
-      <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="KENSHO Lab" class="title-icon">
-      研究テーマ
-      </h1>
-      <p class="lead">
-        インフラの現場課題に直結するAI技術を、データ収集・検証・実装まで一気通貫で扱います。
-      </p>
-    </section>
+      <div class="hero-container">
+        <!-- 追加：論文一覧ボタン -->
+        <a href="papers.html" class="btn-papers">
+          研究論文一覧 <span style="font-size: 1.2em;">→</span>
+        </a>
 
+        <div class="kicker">RESEARCH</div>
+        <h1 class="page-title">
+          <img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E7%A0%94%E7%A9%B6%E5%AE%A4%E3%83%AD%E3%82%B4_%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB2.png" alt="KENSHO Lab" class="title-icon">
+          研究テーマ
+        </h1>
+        <p class="lead">
+          インフラの現場課題に直結するAI技術を、データ収集・検証・実装まで一気通貫で扱います。
+        </p>
+      </div>
+    </section>
+  
     <!-- インフラ都市イラスト＋ホットスポット -->
     <section class="city" aria-label="Infrastructure city illustration">
     <!-- 橋：ホットスポット -->
