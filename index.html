@@ -126,25 +126,38 @@
       transform: translateY(-1px);
     }
 
-    .button{
-      margin-top: 6px;
-      padding: 12px 24px;
+/* ボタンを横並びにするコンテナ */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .button {
+      padding: 12px 20px;
       border-radius: 12px;
-      display: inline-block;
       text-decoration: none;
       background: rgba(11,18,32,0.88);
       color: #ffffff;
-      font-weight: 700;
       border: 1px solid rgba(11,18,32,0.25);
+      font-weight: 700;
       transition: 0.3s;
+      font-size: 14px;
     }
-    .button:hover{
+    .button:hover {
       background: #0b1220;
-      transform: scale(1.02);
+      transform: translateY(-2px);
     }
 
-    /* スマホ対応：画面が狭いときは縦並びに戻す */
-    @media (max-width: 640px){
+    /* スマホではボタンを縦に並べる */
+    @media (max-width: 640px) {
+      .button-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .button { text-align: center; }
+    }
+
       .brand-container {
         flex-direction: column;
         text-align: center;
@@ -187,7 +200,10 @@
           <a href="access.html">Access</a>
         </nav>
 
-        <a href="#industry" class="button">共同研究のご相談</a>
+     <div class="button-group">
+      <a href="contact.html" class="button">共同研究のご相談</a>
+      <a href="contact.html" class="button">その他お問い合わせ</a>
+     </div>
 
       </div>
     </div>
