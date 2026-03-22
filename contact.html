@@ -1,104 +1,28 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact | KENSHO Lab</title>
+  <!-- (前のCSSはそのまま、以下を追加・修正) -->
   <style>
-    :root {
-      --bg: #0b1220;
-      --glass: rgba(255,255,255,0.08);
-      --border: rgba(255,255,255,0.15);
-      --accent: #3ea6ff;
-      --univ-red: #b02127;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Noto Sans JP", sans-serif;
-      background: var(--bg);
-      color: #fff;
-      background-image: radial-gradient(circle at 10% 10%, rgba(62, 166, 255, 0.05), transparent 40%);
-    }
-
-    /* --- 固定ヘッダー（共通） --- */
-    .topbar {
-      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-      width: min(1100px, 92vw); z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 12px; border-radius: 999px;
-      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    }
-    .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 800; }
-    .brand-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); }
-    .nav a { text-decoration: none; color: #fff; font-weight: 700; font-size: 14px; padding: 10px 12px; border-radius: 999px; }
-
-    /* --- メインコンテンツ --- */
-    .wrap { width: min(800px, 92vw); margin: 120px auto 60px; }
-    .page-title { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
-    .title-icon { width: 60px; height: auto; }
-
-    .form-container {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      padding: 40px;
-      border-radius: 24px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-
-    .form-group { margin-bottom: 24px; }
+    /* ... 既存のスタイル ... */
     
-    label {
-      display: block; font-size: 13px; font-weight: 800; color: var(--accent);
-      margin-bottom: 8px; letter-spacing: 0.1em;
-    }
-    .required-tag {
-      background: var(--univ-red); color: #fff; font-size: 10px;
-      padding: 2px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle;
-    }
-
-    input, select, textarea {
-      width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border); border-radius: 12px;
-      padding: 12px 16px; color: #fff; font-size: 16px; transition: 0.3s;
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none; border-color: var(--accent); background: rgba(255,255,255,0.1);
-    }
-
-    select option { background: var(--bg); color: #fff; }
-
-    .char-count { text-align: right; font-size: 12px; opacity: 0.5; margin-top: 4px; }
-
-    /* 送信ボタン */
-    .submit-btn {
-      width: 100%; padding: 16px; border: none; border-radius: 12px;
-      background: var(--accent); color: #0b1220; font-size: 16px; font-weight: 900;
-      cursor: pointer; transition: 0.3s; margin-top: 20px;
-    }
-    .submit-btn:hover { background: #fff; transform: translateY(-2px); }
+    /* 確認画面用のスタイル */
+    .confirm-text { display: none; font-size: 16px; line-height: 1.6; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .is-confirm .form-input { display: none; } /* 確認中は入力欄を隠す */
+    .is-confirm .confirm-text { display: block; } /* 確認中はテキストを出す */
     
-    /* 入力不足の時のスタイル */
-    input:invalid, textarea:invalid { border-color: rgba(255,255,255,0.15); }
-
-    @media (max-width: 640px) { .form-container { padding: 24px; } }
+    .btn-group { display: flex; gap: 12px; margin-top: 30px; }
+    .back-btn { 
+      flex: 1; padding: 16px; border-radius: 12px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; font-weight: 800;
+    }
+    .submit-btn { flex: 2; }
+    
+    #backButton { display: none; } /* 初期状態では隠す */
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <a class="brand" href="index.html"><span class="brand-dot"></span>HIRAO Lab</a>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="research.html">Research</a>
-      <a href="members.html">Lab Members</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="news.html">News</a>
-      <a href="access.html">Access</a>
-    </nav>
-  </header>
+  <!-- (ヘッダーは共通) -->
 
   <main class="wrap">
     <div class="page-title">
@@ -107,35 +31,35 @@
     </div>
 
     <div class="form-container">
-      <!-- 
-        FormSubmit サービスを利用 
-        actionのURLにあなたのメールアドレスを指定します
-      -->
-      <form action="https://formsubmit.co/kensho.h@kokushikan.ac.jp" method="POST">
+      <form id="contactForm" action="https://formsubmit.co/kensho.h@kokushikan.ac.jp" method="POST">
         
-        <!-- 設定用隠しフィールド -->
-        <input type="hidden" name="_subject" value="【研究室サイト】新しいお問い合わせが届きました">
-        <input type="hidden" name="_next" value="https://main.d24snd0warhreg.amplifyapp.com/index.html"> <!-- 送信後のリダイレクト先 -->
-        <input type="hidden" name="_template" value="table">
+        <!-- 送信後の完了ページ指定（重要） -->
+        <input type="hidden" name="_next" value="https://main.d24snd0warhreg.amplifyapp.com/thanks.html">
+        <input type="hidden" name="_subject" value="【研究室サイト】新規お問い合わせ">
+        <!-- FormSubmitの確認画面を飛ばす設定 -->
+        <input type="hidden" name="_captcha" value="false">
 
         <div class="form-group">
           <label>お名前<span class="required-tag">必須</span></label>
-          <input type="text" name="お名前" placeholder="国士 太郎" required>
+          <input type="text" name="お名前" id="input_name" class="form-input" placeholder="国士 太郎" required>
+          <div class="confirm-text" id="text_name"></div>
         </div>
 
         <div class="form-group">
           <label>ご所属<span class="required-tag">必須</span></label>
-          <input type="text" name="所属" placeholder="株式会社〇〇 建設事業部 / 〇〇大学" required>
+          <input type="text" name="所属" id="input_org" class="form-input" required>
+          <div class="confirm-text" id="text_org"></div>
         </div>
 
         <div class="form-group">
           <label>メールアドレス<span class="required-tag">必須</span></label>
-          <input type="email" name="email" placeholder="example@mail.com" required>
+          <input type="email" name="email" id="input_email" class="form-input" required>
+          <div class="confirm-text" id="text_email"></div>
         </div>
 
         <div class="form-group">
           <label>お問い合わせ項目<span class="required-tag">必須</span></label>
-          <select name="項目" required>
+          <select name="項目" id="input_subject" class="form-input" required>
             <option value="" disabled selected>選択してください</option>
             <option value="共同研究のご相談">共同研究のご相談</option>
             <option value="メディア出演のご依頼">メディア出演のご依頼</option>
@@ -144,18 +68,58 @@
             <option value="研究室見学会">研究室見学</option>
             <option value="その他">その他</option>
           </select>
+          <div class="confirm-text" id="text_subject"></div>
         </div>
 
         <div class="form-group">
           <label>お問い合わせ内容<span class="required-tag">必須</span></label>
-          <textarea name="内容" rows="8" maxlength="500" placeholder="お問い合わせ内容をご記入ください（最大500文字）" required></textarea>
-          <div class="char-count">最大 500 文字</div>
+          <textarea name="内容" id="input_message" class="form-input" rows="8" maxlength="500" required></textarea>
+          <div class="confirm-text" id="text_message" style="white-space: pre-wrap;"></div>
         </div>
 
-        <button type="submit" class="submit-btn">内容を確認して送信</button>
+        <div class="btn-group">
+          <button type="button" id="backButton" class="back-btn" onclick="goBack()">修正する</button>
+          <button type="button" id="actionButton" class="submit-btn" style="background:var(--accent); color:#0b1220; border:none; border-radius:12px; font-weight:900; cursor:pointer;" onclick="goConfirm()">内容を確認する</button>
+        </div>
       </form>
     </div>
   </main>
 
+  <script>
+    const form = document.getElementById('contactForm');
+    const actionButton = document.getElementById('actionButton');
+    const backButton = document.getElementById('backButton');
+    const container = document.querySelector('.form-container');
+
+    // 「内容を確認する」ボタンを押したとき
+    function goConfirm() {
+      // 入力バリデーションチェック
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // 入力値をテキスト表示用にコピー
+      document.getElementById('text_name').innerText = document.getElementById('input_name').value;
+      document.getElementById('text_org').innerText = document.getElementById('input_org').value;
+      document.getElementById('text_email').innerText = document.getElementById('input_email').value;
+      document.getElementById('text_subject').innerText = document.getElementById('input_subject').value;
+      document.getElementById('text_message').innerText = document.getElementById('input_message').value;
+
+      // 表示の切り替え
+      container.classList.add('is-confirm');
+      backButton.style.display = 'block';
+      actionButton.innerText = '送信する';
+      actionButton.onclick = function() { form.submit(); }; // 次のクリックで送信
+    }
+
+    // 「修正する」ボタンを押したとき
+    function goBack() {
+      container.classList.remove('is-confirm');
+      backButton.style.display = 'none';
+      actionButton.innerText = '内容を確認する';
+      actionButton.onclick = goConfirm;
+    }
+  </script>
 </body>
 </html>
