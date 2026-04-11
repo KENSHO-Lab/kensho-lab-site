@@ -93,9 +93,28 @@
       overflow-y: auto;
       scroll-snap-type: y proximity; /* 写真の境目で止まりやすくする */
     }
-    /* スクロールバーを隠す（または細くする） */
-    .photo-scroller::-webkit-scrollbar { width: 4px; }
-    .photo-scroller::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+/* スクロールバー全体 */
+.photo-scroller::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* 背景（トラック） */
+.photo-scroller::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+
+/* つまみ部分 */
+.photo-scroller::-webkit-scrollbar-thumb {
+  background: rgba(62,166,255,0.7);
+  border-radius: 10px;
+  border: 2px solid rgba(11,18,32,0.8);
+}
+
+/* ホバー時（さらに見やすく） */
+.photo-scroller::-webkit-scrollbar-thumb:hover {
+  background: rgba(62,166,255,1);
+}
 
     .photo-scroller img{
       width: 100%;
