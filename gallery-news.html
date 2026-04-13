@@ -8,8 +8,6 @@
   <style>
     :root{
       --bg:#0b1220;
-      --glass: rgba(255,255,255,0.12);
-      --border: rgba(255,255,255,0.18);
       --shadow: 0 18px 60px rgba(0,0,0,0.25);
     }
     body{
@@ -39,24 +37,20 @@
       background: rgba(255,255,255,0.14);
       border: 1px solid rgba(255,255,255,0.22);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      padding-left: 6px;
       color:#fff;
       text-decoration:none;
       font-weight:800;
-      letter-spacing:.04em;
-      white-space:nowrap;
     }
+
     .brand-dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
+      width:10px;height:10px;border-radius:999px;
       background:#3ea6ff;
       box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
     }
@@ -65,7 +59,6 @@
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
     .nav a{
       text-decoration:none;
@@ -74,37 +67,33 @@
       font-size: 14px;
       padding: 10px 12px;
       border-radius: 999px;
-      transition: .2s;
     }
-    .nav a:hover{
-      background: rgba(255,255,255,0.18);
-    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
     .nav a.active{
       background: rgba(255,255,255,0.24);
-      border: 1px solid rgba(255,255,255,0.22);
     }
-    
+
     .wrap{
       width: min(1100px, 92vw);
       margin: 18px auto 44px;
     }
+
     .kicker{
-      opacity:.85;
       letter-spacing:.12em;
       font-weight:900;
       font-size: 12px;
+      opacity:.85;
     }
+
     h1{
       margin: 10px 0 6px;
       font-size: clamp(26px, 4vw, 42px);
-      letter-spacing: .04em;
       font-weight: 900;
     }
+
     .lead{
       margin:0;
       opacity:.86;
-      line-height:1.8;
-      max-width: 80ch;
     }
 
     .grid{
@@ -113,198 +102,138 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
-    @media (max-width: 1100px){
-      .grid{ grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 820px){
+
+    @media (max-width: 900px){
       .grid{ grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 520px){
-      .grid{ grid-template-columns: 1fr; }
     }
 
     .tile{
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 18px;
       overflow:hidden;
-      box-shadow: 0 16px 50px rgba(0,0,0,0.22);
     }
+
     .photo{
       aspect-ratio: 4/3;
-      background: #222;
       background-size: cover;
       background-position: center;
       cursor: pointer;
-      transition: transform 0.25s ease, opacity 0.25s ease;
+      transition: 0.25s;
     }
+
     .photo:hover{
-      transform: scale(1.02);
-      opacity: 0.95;
+      transform: scale(1.03);
     }
+
     .cap{
-      padding: 10px 12px 12px;
-      font-weight: 800;
-      letter-spacing: .05em;
-      opacity: .92;
+      padding: 10px;
+      font-weight: 700;
       font-size: 13px;
     }
-    
-    /* モーダル背景 */
+
+    /* モーダル */
     .lightbox{
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.82);
+      background: rgba(0,0,0,0.85);
       display: none;
-      align-items: center;
-      justify-content: center;
+      align-items:center;
+      justify-content:center;
       z-index: 2000;
-      padding: 30px;
     }
 
     .lightbox.active{
-      display: flex;
+      display:flex;
     }
 
-    /* 拡大画像 */
     .lightbox img{
-      max-width: 90vw;
-      max-height: 85vh;
-      border-radius: 16px;
-      box-shadow: 0 20px 70px rgba(0,0,0,0.45);
-      background: #111;
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 14px;
     }
 
-    /* 閉じるボタン */
     .lightbox-close{
-      position: absolute;
-      top: 24px;
-      right: 32px;
-      font-size: 42px;
-      line-height: 1;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 300;
-      opacity: 0.85;
-      transition: 0.2s;
-    }
-    .lightbox-close:hover{
-      opacity: 1;
-      transform: scale(1.08);
+      position:absolute;
+      top:20px;
+      right:30px;
+      font-size:40px;
+      cursor:pointer;
     }
   </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <a class="brand" href="index.html"><span class="brand-dot"></span>HIRAO Lab</a>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="research.html">Research</a>
-      <a href="members.html">Lab Members</a>
-      <a class="active" href="gallery.html">Gallery</a>
-      <a href="news.html">News</a>
-      <a href="access.html">Access</a>
-    </nav>
-  </header>
 
-  <main class="wrap">
-    <div class="kicker">GALLERY</div>
-    <h1>過去のNews写真</h1>
-    <p class="lead">過去に投稿したNews写真の一覧です</p>
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <span class="brand-dot"></span>HIRAO Lab
+  </a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="members.html">Lab Members</a>
+    <a class="active" href="gallery.html">Gallery</a>
+    <a href="news.html">News</a>
+    <a href="access.html">Access</a>
+  </nav>
+</header>
 
-    <section class="grid" aria-label="Photo grid">
-      <!-- 写真URLをS3に上げて data-full と background-image の両方に入れてください -->
-      <article class="tile">
-        <div class="photo"
-             data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/HP_Home1.png"
-             style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/HP_Home1.png');"></div>
-        <div class="cap">平尾研究室ホームページ始動</div>
-      </article>
+<main class="wrap">
+  <div class="kicker">GALLERY</div>
+  <h1>過去のNews写真</h1>
+  <p class="lead">過去に投稿したNews写真の一覧です</p>
 
-      <article class="tile">
-        <div class="photo"
-             data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F1.jpg"
-             style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F1.jpg');"></div>
-        <div class="cap">平尾先生ご着任</div>
-      </article>
+  <section class="grid">
 
-      <article class="tile">
-        <div class="photo"
-             data-full=""
-             style="background-image:url('');"></div>
-        <div class="cap">-</div>
-      </article>
+    <!-- ① -->
+    <article class="tile">
+      <div class="photo"
+           data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/HP_Home1.png"
+           style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/HP_Home1.png');"></div>
+      <div class="cap">平尾研究室ホームページ始動</div>
+    </article>
 
-      <article class="tile">
-        <div class="photo"
-             data-full=""
-             style="background-image:url('');"></div>
-        <div class="cap">-</div>
-      </article>
+    <!-- ② -->
+    <article class="tile">
+      <div class="photo"
+           data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F1.jpg"
+           style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E5%B9%B3%E5%B0%BE%E8%B3%A2%E7%94%9F_%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F1.jpg');"></div>
+      <div class="cap">平尾先生ご着任</div>
+    </article>
 
-      <article class="tile">
-        <div class="photo"
-             data-full=""
-             style="background-image:url('');"></div>
-        <div class="cap">-</div>
-      </article>
+  </section>
+</main>
 
-      <article class="tile">
-        <div class="photo"
-             data-full=""
-             style="background-image:url('');"></div>
-        <div class="cap">-</div>
-      </article>
+<!-- モーダル -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="close">&times;</span>
+  <img id="img">
+</div>
 
-      <article class="tile">
-        <div class="photo"
-             data-full=""
-             style="background-image:url('');"></div>
-        <div class="cap">-</div>
-      </article>
+<script>
+const photos = document.querySelectorAll('.photo');
+const lightbox = document.getElementById('lightbox');
+const img = document.getElementById('img');
+const close = document.getElementById('close');
 
-      <article class="tile">
-        <div class="photo"
-             data-full=""
-             style="background-image:url('');"></div>
-        <div class="cap">-</div>
-      </article>
-    </section>
-  </main>
+photos.forEach(p => {
+  p.onclick = () => {
+    if(!p.dataset.full) return;
+    img.src = p.dataset.full;
+    lightbox.classList.add('active');
+  };
+});
 
-  <!-- 拡大表示モーダル -->
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" id="lightboxClose">&times;</span>
-    <img id="lightboxImg" src="" alt="拡大画像">
-  </div>
+close.onclick = () => {
+  lightbox.classList.remove('active');
+};
 
-  <script>
-    const photos = document.querySelectorAll('.photo');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
+lightbox.onclick = (e) => {
+  if(e.target === lightbox){
+    lightbox.classList.remove('active');
+  }
+};
+</script>
 
-    photos.forEach(photo => {
-      photo.addEventListener('click', () => {
-        const imgUrl = photo.dataset.full;
-        if (!imgUrl) return;
-        lightboxImg.src = imgUrl;
-        lightbox.classList.add('active');
-      });
-    });
-
-    lightboxClose.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-      lightboxImg.src = '';
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('active');
-        lightboxImg.src = '';
-      }
-    });
-  </script>
 </body>
 </html>
