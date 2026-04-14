@@ -150,21 +150,66 @@
       font-weight: 900;
     }
 
+    /* スマホだけ改行 */
+    .sp-br {
+      display: none;
+    }
+    
+    @media (max-width: 640px) {
+      .sp-br {
+        display: block;
+      }
+    }    
+
     /* ===== スマホ対応の設定 ===== */
     @media (max-width: 640px) {
+      .hero {
+        align-items: flex-start;   /* 画面上部に配置 */
+        justify-content: center;
+        padding-top: 20px;
+      }
+
+      .hero-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
       .brand-container {
         flex-direction: column; /* スマホの時だけ縦並び */
         text-align: center;
-        gap: 12px;
+        gap: 8px;
       }
+      .university {
+        font-size: clamp(18px, 5vw, 24px);
+        line-height: 1.05;
+      }
+
+      .catchcopy {
+        margin-top: 2px;
+        font-size: clamp(14px, 3.8vw, 18px);
+        line-height: 1.15;
+        letter-spacing: 0.05em;
+      }
+
       .home-message {
-        font-size: clamp(14px, 4vw, 18px);
-        line-height: 1.7;
+        font-size: clamp(13px, 3.8vw, 16px);
+        line-height: 1.35;
+        margin-top: 10px;
       }
+      .hero-band{
+        width: min(92vw, 560px);
+        padding: 22px 18px;   /* 縦方向を小さく */
+        border-radius: 18px;
+      }
+
       .main-nav{
         flex-wrap: wrap;
         justify-content: center;
         border-radius: 18px;
+        margin: 6px 0 8px 0;
+        padding: 6px;
+        gap: 6px;
       }
     }    
   </style>
@@ -199,7 +244,7 @@
         </nav>
 
         <div class="home-message">
-          ～現場実装を見据え実用化を最優先とする
+          ～現場実装を見据え実用化を最優先とする<span class="sp-br"></span>
           <span class="highlight-red">日本初</span>
           の
           <span class="highlight-red">建設DX研究室</span>
