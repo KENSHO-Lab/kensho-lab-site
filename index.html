@@ -234,31 +234,16 @@
       /* ===== ドローン ===== */
       .drone{
         position: absolute;
-        width: 120px;
+        width: 200px;
         z-index: 0;
         pointer-events: none;
-      
         top: 65%;
         left: 20%;
-      
         animation: fly 18s linear infinite;
-      
         filter: drop-shadow(0 14px 16px rgba(0,0,0,0.35));
         opacity: 0.95;
       }
-      
-        /* 初期位置（半透明の下あたり） */
-        top: 65%;
-        left: 20%;
-      
-        /* アニメーション */
-        animation: fly 18s linear infinite;
-      
-        /* リアル感 */
-        filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
-      }
-      
-      /* 飛行ルート（無造作っぽい動き） */
+       /* 飛行ルート（無造作っぽい動き） */ 
       @keyframes fly {
         0%   { transform: translate(0,0) rotate(0deg); }
         20%  { transform: translate(200px,-80px) rotate(8deg); }
