@@ -231,11 +231,12 @@
       }
 
       .drone{
-        width: 80px;
-        top: 10%;
-        left: 6%;
-        opacity: 0.9;
+        width: 60px;
+        max-width: 22vw;
+        top: 12%;
+        left: 10%;
         animation: fly-mobile 16s ease-in-out infinite;
+        opacity: 0.85;
       }
 
     } 
@@ -265,10 +266,10 @@
 
       @keyframes fly-mobile {
         0%   { transform: translate(0,0) rotate(0deg); }
-        20%  { transform: translate(70px,-10px) rotate(5deg); }
-        40%  { transform: translate(150px,20px) rotate(-4deg); }
-        60%  { transform: translate(220px,-5px) rotate(6deg); }
-        80%  { transform: translate(120px,25px) rotate(-5deg); }
+        20%  { transform: translate(15vw,-2vh) rotate(5deg); }
+        40%  { transform: translate(30vw,3vh) rotate(-4deg); }
+        60%  { transform: translate(45vw,-1vh) rotate(6deg); }
+        80%  { transform: translate(25vw,4vh) rotate(-5deg); }
         100% { transform: translate(0,0) rotate(0deg); }
       }
 
