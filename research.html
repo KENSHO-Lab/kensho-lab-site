@@ -185,7 +185,9 @@
     
       width: min(440px, calc(100vw - 24px));
       max-width: 440px;
+      max-height: 70%;
       box-sizing: border-box;
+      overflow: auto;
     
       opacity: 0;
       visibility: hidden;
@@ -279,18 +281,29 @@
     }
   
     .bubble{
-      width: calc(100vw - 24px);
-      max-width: 340px;
-      padding: 14px;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+  
+      width: calc(100% - 24px);
+      max-width: calc(100% - 24px);
+      max-height: calc(100% - 24px);
+  
+      padding: 12px 14px;
+      border-radius: 16px;
+      overflow: auto;
     }
   
     .bubble h3{
-      font-size: 16px;
+      margin: 0 0 6px;
+      font-size: clamp(14px, 3.2vw, 16px);
+      line-height: 1.4;
     }
   
     .bubble ul{
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: clamp(12px, 2.8vw, 14px);
+      line-height: 1.6;
+      padding-left: 16px;
     }
   }
 
@@ -478,38 +491,38 @@
     }
   
     function adjustBubblePosition(hotspot, bubble) {
-      const cityRect = city.getBoundingClientRect();
-      const hotspotRect = hotspot.getBoundingClientRect();
-  
+      const isMobile = window.innerWidth <= 640;
+    
+      if (isMobile) {
+        bubble.style.left = '50%';
+        bubble.style.top = '50%';
+        bubble.style.transform = 'translate(-50%, -50%)';
+        return;
+      }
+    
       bubble.style.left = hotspot.offsetLeft + 'px';
       bubble.style.top = hotspot.offsetTop + 'px';
       bubble.style.transform = 'translate(-50%, calc(-100% - 18px))';
-  
+    
       const bubbleRect = bubble.getBoundingClientRect();
-  
       const overflowLeft = bubbleRect.left - 12;
       const overflowRight = window.innerWidth - bubbleRect.right - 12;
       const overflowTop = bubbleRect.top - 12;
-  
+    
+      let shiftX = 0;
+    
       if (overflowLeft < 0) {
-        const shift = Math.abs(overflowLeft);
-        bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
+        shiftX += Math.abs(overflowLeft);
       }
-  
+    
       if (overflowRight < 0) {
-        const current = bubble.style.transform.includes('calc(-50% +')
-          ? bubble.style.transform.match(/calc\(-50% \+ ([0-9.]+)px\)/)
-          : null;
-  
-        const currentShift = current ? parseFloat(current[1]) : 0;
-        const shift = currentShift - Math.abs(overflowRight);
-        bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
+        shiftX -= Math.abs(overflowRight);
       }
-  
-      const adjustedRect = bubble.getBoundingClientRect();
-  
-      if (overflowTop < 0 || adjustedRect.top < 12) {
-        bubble.style.transform = 'translate(-50%, 18px)';
+    
+      if (overflowTop < 0) {
+        bubble.style.transform = `translate(calc(-50% + ${shiftX}px), 18px)`;
+      } else {
+        bubble.style.transform = `translate(calc(-50% + ${shiftX}px), calc(-100% - 18px))`;
       }
     }
   
