@@ -390,91 +390,6 @@
     
   </style>
 </head>
-
-<script>
-  const hotspots = document.querySelectorAll('.hotspot');
-  const bubbles = document.querySelectorAll('.bubble');
-  const city = document.querySelector('.city');
-
-  function closeAllBubbles() {
-    bubbles.forEach(bubble => {
-      bubble.classList.remove('is-open');
-      bubble.style.left = '';
-      bubble.style.right = '';
-      bubble.style.top = '';
-      bubble.style.transform = '';
-    });
-  }
-
-  function adjustBubblePosition(hotspot, bubble) {
-    const cityRect = city.getBoundingClientRect();
-    const hotspotRect = hotspot.getBoundingClientRect();
-
-    bubble.style.left = hotspot.offsetLeft + 'px';
-    bubble.style.top = hotspot.offsetTop + 'px';
-    bubble.style.transform = 'translate(-50%, calc(-100% - 18px))';
-
-    const bubbleRect = bubble.getBoundingClientRect();
-
-    const overflowLeft = bubbleRect.left - 12;
-    const overflowRight = window.innerWidth - bubbleRect.right - 12;
-    const overflowTop = bubbleRect.top - 12;
-
-    if (overflowLeft < 0) {
-      const shift = Math.abs(overflowLeft);
-      bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
-    }
-
-    if (overflowRight < 0) {
-      const current = bubble.style.transform.includes('calc(-50% +')
-        ? bubble.style.transform.match(/calc\(-50% \+ ([0-9.]+)px\)/)
-        : null;
-
-      const currentShift = current ? parseFloat(current[1]) : 0;
-      const shift = currentShift - Math.abs(overflowRight);
-      bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
-    }
-
-    const adjustedRect = bubble.getBoundingClientRect();
-
-    if (overflowTop < 0 || adjustedRect.top < 12) {
-      bubble.style.transform = 'translate(-50%, 18px)';
-    }
-  }
-
-  hotspots.forEach((hotspot, index) => {
-    const bubble = hotspot.nextElementSibling;
-
-    hotspot.addEventListener('click', function (e) {
-      e.stopPropagation();
-
-      const isOpen = bubble.classList.contains('is-open');
-      closeAllBubbles();
-
-      if (!isOpen) {
-        bubble.classList.add('is-open');
-        adjustBubblePosition(hotspot, bubble);
-      }
-    });
-
-    bubble.addEventListener('click', function (e) {
-      e.stopPropagation();
-    });
-  });
-
-  document.addEventListener('click', function () {
-    closeAllBubbles();
-  });
-
-  window.addEventListener('resize', function () {
-    const openBubble = document.querySelector('.bubble.is-open');
-    if (!openBubble) return;
-
-    const openHotspot = openBubble.previousElementSibling;
-    adjustBubblePosition(openHotspot, openBubble);
-  });
-</script>
-
 <body>
   <!-- 固定ヘッダー -->
   <header class="topbar">
@@ -546,5 +461,90 @@
       
     </section>
   </main>
+
+  <script>
+    const hotspots = document.querySelectorAll('.hotspot');
+    const bubbles = document.querySelectorAll('.bubble');
+    const city = document.querySelector('.city');
+  
+    function closeAllBubbles() {
+      bubbles.forEach(bubble => {
+        bubble.classList.remove('is-open');
+        bubble.style.left = '';
+        bubble.style.right = '';
+        bubble.style.top = '';
+        bubble.style.transform = '';
+      });
+    }
+  
+    function adjustBubblePosition(hotspot, bubble) {
+      const cityRect = city.getBoundingClientRect();
+      const hotspotRect = hotspot.getBoundingClientRect();
+  
+      bubble.style.left = hotspot.offsetLeft + 'px';
+      bubble.style.top = hotspot.offsetTop + 'px';
+      bubble.style.transform = 'translate(-50%, calc(-100% - 18px))';
+  
+      const bubbleRect = bubble.getBoundingClientRect();
+  
+      const overflowLeft = bubbleRect.left - 12;
+      const overflowRight = window.innerWidth - bubbleRect.right - 12;
+      const overflowTop = bubbleRect.top - 12;
+  
+      if (overflowLeft < 0) {
+        const shift = Math.abs(overflowLeft);
+        bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
+      }
+  
+      if (overflowRight < 0) {
+        const current = bubble.style.transform.includes('calc(-50% +')
+          ? bubble.style.transform.match(/calc\(-50% \+ ([0-9.]+)px\)/)
+          : null;
+  
+        const currentShift = current ? parseFloat(current[1]) : 0;
+        const shift = currentShift - Math.abs(overflowRight);
+        bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
+      }
+  
+      const adjustedRect = bubble.getBoundingClientRect();
+  
+      if (overflowTop < 0 || adjustedRect.top < 12) {
+        bubble.style.transform = 'translate(-50%, 18px)';
+      }
+    }
+  
+    hotspots.forEach((hotspot, index) => {
+      const bubble = hotspot.nextElementSibling;
+  
+      hotspot.addEventListener('click', function (e) {
+        e.stopPropagation();
+  
+        const isOpen = bubble.classList.contains('is-open');
+        closeAllBubbles();
+  
+        if (!isOpen) {
+          bubble.classList.add('is-open');
+          adjustBubblePosition(hotspot, bubble);
+        }
+      });
+  
+      bubble.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+    });
+  
+    document.addEventListener('click', function () {
+      closeAllBubbles();
+    });
+  
+    window.addEventListener('resize', function () {
+      const openBubble = document.querySelector('.bubble.is-open');
+      if (!openBubble) return;
+  
+      const openHotspot = openBubble.previousElementSibling;
+      adjustBubblePosition(openHotspot, openBubble);
+    });
+  </script>
+  
 </body>
 </html>
