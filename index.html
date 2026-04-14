@@ -22,7 +22,7 @@
       align-items: flex-start;
       justify-content: center;
       text-align: center;
-      padding-top: 100px; /* 値が大きいほど半透明部分を少し下げる */
+      padding-top: 80px; /* 値が大きいほど半透明部分を少し下げる */
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -169,6 +169,11 @@
 
     /* ===== スマホ対応の設定 ===== */
     @media (max-width: 640px) {
+
+      .drone{
+        display: none;
+      }
+    
       .hero {
         height: 100dvh;
         align-items: flex-start;
@@ -224,7 +229,36 @@
         object-position: center center;
       }
 
-    }    
+    } 
+
+      /* ===== ドローン ===== */
+      .drone{
+        position: absolute;
+        width: 80px;
+        z-index: 0;
+        pointer-events: none;
+      
+        /* 初期位置（半透明の下あたり） */
+        top: 65%;
+        left: 20%;
+      
+        /* アニメーション */
+        animation: fly 18s linear infinite;
+      
+        /* リアル感 */
+        filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
+      }
+      
+      /* 飛行ルート（無造作っぽい動き） */
+      @keyframes fly {
+        0%   { transform: translate(0,0) rotate(0deg); }
+        20%  { transform: translate(200px,-80px) rotate(8deg); }
+        40%  { transform: translate(400px,40px) rotate(-5deg); }
+        60%  { transform: translate(200px,120px) rotate(6deg); }
+        80%  { transform: translate(-100px,40px) rotate(-8deg); }
+        100% { transform: translate(0,0) rotate(0deg); }
+      }
+
   </style>
 </head>
 
@@ -235,7 +269,9 @@
       <source src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%B1%A0%E9%96%93%E5%A4%A7%E6%A9%8B.mp4" type="video/mp4">
     </video>
 
-    <div class="hero-content">
+<img src="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/drone1.png" class="drone">
+
+<div class="hero-content">
       <div class="hero-band center-layout">
 
         <!-- ロゴとテキストの横並びエリア -->
