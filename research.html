@@ -155,47 +155,60 @@
     }
 
     /* ホットスポット（橋の位置に置く） */
-      .hotspot{
-        position:absolute;
-        width: 44px;
-        height: 44px;
-        border-radius: 999px;
-        transform: translate(-50%, -50%);
-        background: rgba(220, 38, 38, 0.25);
-        border: 1px solid rgba(220, 38, 38, 0.75);
-        box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.18);
-        cursor: pointer;
-        animation: pulse 2s infinite;
-      
-        /* 追加 */
-        padding: 0;
-        outline: none;
-      }
-      
-      /* 追加 */
-      .hotspot:focus-visible {
-        opacity: 1;
-      }
-    
-    .bubble{
+    .hotspot{
       position:absolute;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      background: rgba(220, 38, 38, 0.25);
+      border: 1px solid rgba(220, 38, 38, 0.75);
+      box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.18);
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    
+      /* 追加 */
+      padding: 0;
+      outline: none;
+    }
+    
+    /* 追加 */
+    .hotspot:focus-visible {
+      opacity: 1;
+    }
+  
+    .bubble{
+      position: absolute;
+      left: 50%;
+      top: 0;
       transform: translate(-50%, calc(-100% - 18px));
-      width: min(440px, 80vw);
+    
+      width: min(440px, calc(100vw - 24px));
+      max-width: 440px;
+      box-sizing: border-box;
     
       opacity: 0;
       visibility: hidden;
-      transition: .18s;
+      pointer-events: none;
+      transition: opacity .18s ease, visibility .18s ease, transform .18s ease;
     
       background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: 18px;
-      padding: 16px 16px;
+      padding: 16px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 18px 60px rgba(0,0,0,0.30);
       color: #fff;
       text-align: left;
-      z-index: 100;
+      z-index: 200;
+    }
+    
+    /* 開いた吹き出し */
+    .bubble.is-open{
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     @keyframes pulse{
@@ -209,27 +222,6 @@
       position:absolute; inset: 10px;
       border-radius: 999px;
       background: rgba(220, 38, 38, 0.85);
-    }
-
-    /* 吹き出し（ホバーで表示） */
-    .bubble{
-      position:absolute;
-      transform: translate(-50%, calc(-100% - 18px));
-      width: min(440px, 80vw);
-
-      opacity: 0;
-      visibility: hidden;
-      transition: .18s;
-
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 18px;
-      padding: 16px 16px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.30);
-      color: #fff;
-      text-align: left;
     }
 
     .bubble h3{
@@ -266,20 +258,14 @@
       border-color: transparent transparent rgba(255,255,255,0.18) transparent;
     }
 
-    /* ホバー時 */
-    .hotspot:hover + .bubble{
+  /* PCではホバーで表示してもよい */
+  @media (hover: hover) and (pointer: fine) {
+    .hotspot:hover + .bubble {
       opacity: 1;
       visibility: visible;
-      z-index: 100;
+      pointer-events: auto;
     }
-    
-    /* タップ時・キーボード操作時 */
-    .hotspot:focus + .bubble,
-    .hotspot:active + .bubble {
-      opacity: 1;
-      visibility: visible;
-      z-index: 100;
-    }
+  }
 
     /* スマホで指でも見れるように：ホットスポットをタップしやすく */
   @media (max-width: 640px){
@@ -293,7 +279,18 @@
     }
   
     .bubble{
-      width: min(520px, 92vw);
+      width: calc(100vw - 24px);
+      max-width: 340px;
+      padding: 14px;
+    }
+  
+    .bubble h3{
+      font-size: 16px;
+    }
+  
+    .bubble ul{
+      font-size: 14px;
+      line-height: 1.7;
     }
   }
 
@@ -393,6 +390,90 @@
     
   </style>
 </head>
+
+<script>
+  const hotspots = document.querySelectorAll('.hotspot');
+  const bubbles = document.querySelectorAll('.bubble');
+  const city = document.querySelector('.city');
+
+  function closeAllBubbles() {
+    bubbles.forEach(bubble => {
+      bubble.classList.remove('is-open');
+      bubble.style.left = '';
+      bubble.style.right = '';
+      bubble.style.top = '';
+      bubble.style.transform = '';
+    });
+  }
+
+  function adjustBubblePosition(hotspot, bubble) {
+    const cityRect = city.getBoundingClientRect();
+    const hotspotRect = hotspot.getBoundingClientRect();
+
+    bubble.style.left = hotspot.offsetLeft + 'px';
+    bubble.style.top = hotspot.offsetTop + 'px';
+    bubble.style.transform = 'translate(-50%, calc(-100% - 18px))';
+
+    const bubbleRect = bubble.getBoundingClientRect();
+
+    const overflowLeft = bubbleRect.left - 12;
+    const overflowRight = window.innerWidth - bubbleRect.right - 12;
+    const overflowTop = bubbleRect.top - 12;
+
+    if (overflowLeft < 0) {
+      const shift = Math.abs(overflowLeft);
+      bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
+    }
+
+    if (overflowRight < 0) {
+      const current = bubble.style.transform.includes('calc(-50% +')
+        ? bubble.style.transform.match(/calc\(-50% \+ ([0-9.]+)px\)/)
+        : null;
+
+      const currentShift = current ? parseFloat(current[1]) : 0;
+      const shift = currentShift - Math.abs(overflowRight);
+      bubble.style.transform = `translate(calc(-50% + ${shift}px), calc(-100% - 18px))`;
+    }
+
+    const adjustedRect = bubble.getBoundingClientRect();
+
+    if (overflowTop < 0 || adjustedRect.top < 12) {
+      bubble.style.transform = 'translate(-50%, 18px)';
+    }
+  }
+
+  hotspots.forEach((hotspot, index) => {
+    const bubble = hotspot.nextElementSibling;
+
+    hotspot.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      const isOpen = bubble.classList.contains('is-open');
+      closeAllBubbles();
+
+      if (!isOpen) {
+        bubble.classList.add('is-open');
+        adjustBubblePosition(hotspot, bubble);
+      }
+    });
+
+    bubble.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  });
+
+  document.addEventListener('click', function () {
+    closeAllBubbles();
+  });
+
+  window.addEventListener('resize', function () {
+    const openBubble = document.querySelector('.bubble.is-open');
+    if (!openBubble) return;
+
+    const openHotspot = openBubble.previousElementSibling;
+    adjustBubblePosition(openHotspot, openBubble);
+  });
+</script>
 
 <body>
   <!-- 固定ヘッダー -->
