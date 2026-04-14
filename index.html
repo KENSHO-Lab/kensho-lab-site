@@ -22,7 +22,7 @@
       align-items: flex-end;      /* 下に配置 */
       justify-content: center;
       text-align: center;
-      padding-bottom: 40px;       /* 下端から少し余白 */
+      padding-bottom: 24px;       /* 下端から少し余白 */
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -173,10 +173,6 @@
 
     /* ===== スマホ対応の設定 ===== */
     @media (max-width: 640px) {
-
-      .drone{
-        display: none;
-      }
     
       .hero {
         height: 100dvh;
@@ -234,6 +230,14 @@
         object-position: center center;
       }
 
+      .drone{
+        width: 110px;
+        top: 10%;
+        left: 6%;
+        opacity: 0.9;
+        animation: fly-mobile 16s ease-in-out infinite;
+      }
+
     } 
 
       /* ===== ドローン ===== */
@@ -256,6 +260,15 @@
         54%  { transform: translate(680px,-10px) rotate(7deg); }
         72%  { transform: translate(520px,60px) rotate(-6deg); }
         88%  { transform: translate(240px,15px) rotate(4deg); }
+        100% { transform: translate(0,0) rotate(0deg); }
+      }
+
+      @keyframes fly-mobile {
+        0%   { transform: translate(0,0) rotate(0deg); }
+        20%  { transform: translate(70px,-10px) rotate(5deg); }
+        40%  { transform: translate(150px,20px) rotate(-4deg); }
+        60%  { transform: translate(220px,-5px) rotate(6deg); }
+        80%  { transform: translate(120px,25px) rotate(-5deg); }
         100% { transform: translate(0,0) rotate(0deg); }
       }
 
