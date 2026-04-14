@@ -44,7 +44,12 @@
     }
     .brand{ display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:800; }
     .brand-dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow: 0 0 0 6px rgba(62,166,255,0.18); }
-    .nav{ display:flex; gap: 8px; }
+    .nav{
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
     .nav a{ text-decoration:none; color:#fff; font-weight:700; font-size: 14px; padding: 10px 12px; border-radius: 999px; transition: .2s; }
     .nav a:hover{ background: rgba(255,255,255,0.18); }
     .nav a.active{ background: rgba(255,255,255,0.24); border: 1px solid rgba(255,255,255,0.22); }
@@ -70,7 +75,7 @@
     }
 
     /* --- 左側：サイバーマップエリア --- */
-.map-container {
+    .map-container {
       position: relative;
       border-radius: 24px;
       overflow: hidden;
@@ -179,6 +184,46 @@
       .access-grid { grid-template-columns: 1fr; }
       .map-container { aspect-ratio: 1 / 1; }
     }
+
+    @media (max-width: 640px) {
+      .brand {
+        display: none;
+      }
+    
+      .topbar {
+        justify-content: center;
+        padding: 8px 10px;
+      }
+    
+      .nav {
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+      }
+    
+      .nav a {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+    
+      .wrap {
+        margin-top: 150px;
+      }
+    
+      .page-title {
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+    
+      .title-icon {
+        width: 56px;
+      }
+    
+      .page-title h1 {
+        font-size: clamp(24px, 7vw, 32px);
+      }
+    }
+    
   </style>
 </head>
 
