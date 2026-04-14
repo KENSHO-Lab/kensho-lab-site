@@ -295,10 +295,47 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    /* スマホでは見出しの下に配置するように調整 */
+    /* スマホ版調整 */
     @media (max-width: 640px) {
-      .hero-container { display: flex; flex-direction: column; }
-      .btn-papers { position: static; margin-top: 15px; width: fit-content; }
+      /* HIRAO Lab を非表示 */
+      .brand {
+        display: none;
+      }
+    
+      /* 固定ヘッダーを中央寄せ */
+      .topbar {
+        justify-content: center;
+        padding: 8px 10px;
+      }
+    
+      .nav {
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+    
+      .nav a {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+    
+      /* 固定ヘッダー分の余白を少し増やす */
+      .page {
+        padding-top: 120px;
+      }
+    
+      /* 論文一覧ボタンは見出しの下に配置 */
+      .hero-container {
+        display: flex;
+        flex-direction: column;
+      }
+    
+      .btn-papers {
+        position: static;
+        margin-top: 15px;
+        width: fit-content;
+      }
     }
     
   </style>
