@@ -12,6 +12,7 @@
       background: #0b1220;
       color: #ffffff;
       overflow-x: hidden;
+      overflow-y: hidden; /* PCで縦スクロールをなくす */
     }
 
     /* ===== 動画背景 ===== */
@@ -22,8 +23,9 @@
       align-items: flex-start;
       justify-content: center;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 130px; /* 半透明部分を少し下げる */
       box-sizing: border-box;
+      overflow: hidden;   /* hero内で余計なはみ出しを防ぐ */
     }
 
     .hero video {
@@ -165,6 +167,9 @@
 
     /* ===== スマホ対応の設定 ===== */
     @media (max-width: 640px) {
+            body {
+        overflow-y: auto; /* スマホでは必要なら縦スクロール可能にする */
+      }
       .hero {
         align-items: flex-start;   /* 画面上部に配置 */
         justify-content: center;
