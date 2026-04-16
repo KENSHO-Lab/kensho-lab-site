@@ -183,15 +183,17 @@
     .sp-only {
       display: none;
     }
-    
+
+    .pc-br {
+      display: inline;
+    }
+
+    /* ===== スマホ対応の設定 ===== */
     @media (max-width: 640px) {
       .sp-br {
         display: block;
       }
     }    
-
-    /* ===== スマホ対応の設定 ===== */
-    @media (max-width: 640px) {
     
       .hero {
         height: 100dvh;
@@ -258,13 +260,17 @@
         opacity: 0.85;
       }
 
-        .pc-only {
-          display: none;
-        }
-      
-        .sp-only {
-          display: block;
-        }
+      .pc-only {
+        display: none;
+      }
+    
+      .sp-only {
+        display: block;
+      }
+
+      .pc-br {
+        display: none;
+      }
       
         /* スマホはフォント小さく */
         .seo-intro {
@@ -273,8 +279,6 @@
           margin-top: 8px;
         }
       }
-
-    } 
 
       /* ===== ドローン ===== */
       .drone{
