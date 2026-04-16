@@ -174,6 +174,15 @@
       color: #0b1220;
       text-align: center;
     }
+
+    /* PCとスマホの表示切り替え */
+    .pc-only {
+      display: block;
+    }
+    
+    .sp-only {
+      display: none;
+    }
     
     @media (max-width: 640px) {
       .sp-br {
@@ -247,6 +256,22 @@
         left: 6%;
         animation: fly-mobile 16s ease-in-out infinite;
         opacity: 0.85;
+      }
+
+        .pc-only {
+          display: none;
+        }
+      
+        .sp-only {
+          display: block;
+        }
+      
+        /* スマホはフォント小さく */
+        .seo-intro {
+          font-size: clamp(11px, 3.2vw, 13px);
+          line-height: 1.4;
+          margin-top: 8px;
+        }
       }
 
     } 
@@ -324,10 +349,16 @@
           ～
         </div>
 
-        <p class="seo-intro">
-          国士舘大学 建設DX研究室（平尾研究室）は、橋梁・インフラ構造物を対象として、
-          AI、画像解析、3Dモデル活用による建設DXの研究・開発を行っています。
-          現場実装を見据え、実用化につながる研究に特化しています。
+        <!-- PC用 -->
+        <p class="seo-intro pc-only">
+          国士舘大学 建設DX研究室（平尾研究室）は、橋梁・インフラ構造物を対象として<br class="pc-br">
+          AI、画像解析、3Dモデル活用による建設DXの研究・開発を行っています。<br class="pc-br">
+          現場実装を見据え、実用化につながる研究・開発に特化しています。
+        </p>
+        
+        <!-- スマホ用 -->
+        <p class="seo-intro sp-only">
+          橋梁・インフラ構造物を対象として、AI、画像解析、3Dモデル活用による建設DXの研究・開発を行っています。
         </p>
 
       </div>
