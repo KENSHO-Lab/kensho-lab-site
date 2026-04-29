@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>これまでに訪れた橋 | 建設DX研究室（平尾研究室）｜国士舘大学</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.25);
+    }
+
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,0.06), rgba(11,18,32,1) 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    .topbar{
+      position: sticky;
+      top: 12px;
+      width: min(1100px, 92vw);
+      margin: 12px auto 0;
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-left: 6px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:#3ea6ff;
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+
+    .nav{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:700;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+    }
+
+    .nav a.active{
+      background: rgba(255,255,255,0.24);
+    }
+
+    /* ===== コンテンツ ===== */
+    .wrap{
+      width: min(1100px, 92vw);
+      margin: 18px auto 44px;
+    }
+
+    .kicker{
+      opacity:.85;
+      letter-spacing:.12em;
+      font-weight:900;
+      font-size: 12px;
+    }
+
+    h1{
+      margin: 10px 0 6px;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 900;
+    }
+
+    .lead{
+      margin:0;
+      opacity:.86;
+      line-height:1.8;
+    }
+
+    /* ===== グリッド ===== */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .tile{
+      background: rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.22);
+    }
+
+    .photo{
+      aspect-ratio: 4/3;
+      background: #222;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    .cap{
+      padding: 10px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    /* ===== モーダル ===== */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox.active{
+      display: flex;
+    }
+
+    .lightbox img{
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 12px;
+    }
+
+    .lightbox-close{
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    /* ===== スマホ ===== */
+    @media (max-width: 640px) {
+      .brand { display: none; }
+      .topbar { justify-content: center; }
+      .nav { width: 100%; justify-content: center; }
+      .wrap { margin-top: 40px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-dot"></span>HIRAO Lab</a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="members.html">Lab Members</a>
+    <a class="active" href="gallery.html">Gallery</a>
+    <a href="news.html">News</a>
+    <a href="access.html">Access</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="kicker">GALLERY</div>
+  <h1>これまでに訪れた橋</h1>
+  <p class="lead">研究室で訪問した橋梁の記録</p>
+
+  <section class="grid">
+
+    <!-- 例① -->
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Prague_1.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge1.jpg');"></div>
+      <div class="cap">トロヤ橋(チェコ)</div>
+    </article>
+
+    <!-- 例② -->
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge1.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Lille Langebro(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge2.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Langebro(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge3.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Knippelsbro(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge4.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Cirkelbroen(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge5.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Inderhavnsbroen(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge6.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Cykelslangen(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge7.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">ゲフィオン橋(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge10.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">トールボズ橋(デンマーク)</div>
+    </article>
+
+    <article class="tile">
+      <div class="photo"
+        data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/Copenhagen_bridge9.jpg"
+        style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/sample_bridge2.jpg');"></div>
+      <div class="cap">Stormbroen(デンマーク)</div>
+    </article>
+
+  </section>
+</main>
+
+<!-- モーダル -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="close">&times;</span>
+  <img id="img">
+</div>
+
+<script>
+const photos = document.querySelectorAll('.photo');
+const box = document.getElementById('lightbox');
+const img = document.getElementById('img');
+
+photos.forEach(p=>{
+  p.addEventListener('click', ()=>{
+    img.src = p.dataset.full;
+    box.classList.add('active');
+  });
+});
+
+box.addEventListener('click', ()=>{
+  box.classList.remove('active');
+});
+</script>
+
+</body>
+</html>
