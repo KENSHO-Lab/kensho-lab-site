@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>卒論・修論発表会 | 建設DX研究室（平尾研究室）｜国士舘大学</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --glass: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.18);
+      --shadow: 0 18px 60px rgba(0,0,0,0.25);
+    }
+    body{
+      margin:0;
+      font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,0.06), rgba(11,18,32,1) 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    .topbar{
+      position: sticky;
+      top: 12px;
+      width: min(1100px, 92vw);
+      margin: 12px auto 0;
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      padding-left: 6px;
+      color:#fff; text-decoration:none;
+      font-weight:800; letter-spacing:.04em; white-space:nowrap;
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:999px;background:#3ea6ff;
+      box-shadow: 0 0 0 6px rgba(62,166,255,0.18);
+    }
+
+    .nav{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:700;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: .2s;
+    }
+    .nav a:hover{ background: rgba(255,255,255,0.18); }
+    .nav a.active{
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    
+    .wrap{
+      width: min(1100px, 92vw);
+      margin: 18px auto 44px;
+    }
+    .kicker{
+      opacity:.85;
+      letter-spacing:.12em;
+      font-weight:900;
+      font-size: 12px;
+    }
+    h1{
+      margin: 10px 0 6px;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: .04em;
+      font-weight: 900;
+    }
+    .lead{
+      margin:0;
+      opacity:.86;
+      line-height:1.8;
+      max-width: 80ch;
+    }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .tile{
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.22);
+    }
+    .photo{
+      aspect-ratio: 4/3;
+      background: #222;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .photo:hover{
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    .cap{
+      padding: 10px 12px 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      opacity: .92;
+      font-size: 13px;
+    }
+    
+    /* モーダル背景 */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 30px;
+    }
+
+    .lightbox.active{
+      display: flex;
+    }
+
+    /* 拡大画像 */
+    .lightbox img{
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 16px;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.45);
+      background: #111;
+    }
+
+    /* 閉じるボタン */
+    .lightbox-close{
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 42px;
+      line-height: 1;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 300;
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+    .lightbox-close:hover{
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+  @media (max-width: 640px) {
+    .brand {
+      display: none;
+    }
+  
+    .topbar {
+      justify-content: center;
+      padding: 8px 10px;
+    }
+  
+    .nav {
+      width: 100%;
+      justify-content: center;
+      gap: 4px;
+    }
+  
+    .nav a {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+  
+    .wrap {
+      margin-top: 40px;
+    }
+  
+    .page-title {
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+  
+    .title-icon {
+      width: 56px;
+    }
+  
+    .page-title h1 {
+      font-size: clamp(24px, 7vw, 32px);
+    }
+  }
+    
+  </style>
+</head>
+
+<body>
+<header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-dot"></span>HIRAO Lab</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="members.html">Lab Members</a>
+      <a class="active" href="gallery.html">Gallery</a>
+      <a href="news.html">News</a>
+      <a href="access.html">Access</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="kicker">GALLERY</div>
+    <h1>卒論・修論発表会</h1>
+    <p class="lead">卒論発表会・修論発表会・表彰式など学生の勇姿をご覧ください</p>
+
+    <section class="grid" aria-label="Photo grid">
+      <!-- 写真URLをS3に上げて background-image で差し替え -->
+      <article class="tile">
+        <div class="photo"
+             data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%9C%80%E5%84%AA%E7%A7%80%E7%A0%94%E7%A9%B6%E8%B3%9E2026_2.jpg"
+             style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%9C%80%E5%84%AA%E7%A7%80%E7%A0%94%E7%A9%B6%E8%B3%9E2026_2.jpg');"></div>
+        <div class="cap">最優秀成績賞・最優秀研究賞の授賞式 1(横浜国立大学)</div>
+      </article>
+      
+      <article class="tile">
+        <div class="photo"
+             data-full="https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%9C%80%E5%84%AA%E7%A7%80%E7%A0%94%E7%A9%B6%E8%B3%9E2026_3.jpg"
+             style="background-image:url('https://kensho-lab-assets.s3.ap-northeast-1.amazonaws.com/%E6%9C%80%E5%84%AA%E7%A7%80%E7%A0%94%E7%A9%B6%E8%B3%9E2026_3.jpg');"></div>
+        <div class="cap">最優秀成績賞・最優秀研究賞の授賞式 2(横浜国立大学)</div>
+      </article>
+    </section>
+  </main>
+
+  <!-- 拡大表示モーダル -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="拡大画像">
+  </div>
+
+  <script>
+    const photos = document.querySelectorAll('.photo');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    photos.forEach(photo => {
+      photo.addEventListener('click', () => {
+        const imgUrl = photo.dataset.full;
+        if (!imgUrl) return;
+        lightboxImg.src = imgUrl;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+      }
+    });
+  </script>
+</body>
+</html>
