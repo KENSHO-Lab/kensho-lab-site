@@ -319,6 +319,16 @@
     .hs-riverbed{ left: 28%; top: 66%; }
     .b-riverbed{ left: 28%; top: 66%; }    
 
+    /* ===== 追加：建築物（左上の高層ビル群） ===== */
+    /* 位置は画像に合わせて left / top を調整してください（ホットスポットと吹き出しは同じ値に） */
+    .hs-building{ left: 24%; top: 26%; }
+    .b-building{
+      left: 24%;
+      top: 26%;
+      /* ホットスポットの右側に、縦中央をそろえて表示 */
+      transform: translate(36px, -50%);
+    }
+
 /* --- 追加：研究論文一覧ボタンのデザイン --- */
     .hero-container {
       position: relative; /* ボタンを右上に配置するための基準 */
@@ -471,6 +481,15 @@
         <li>河床低下に伴う鋼管杭基礎の補修技術の開発</li>
       </ul>
     </div>
+
+    <!-- 追加：建築物（高層ビル）：ホットスポット -->
+    <button class="hotspot hs-building" aria-label="Building hotspot" type="button"></button>
+    <div class="bubble b-building" data-placement="right" role="note" aria-label="Building research topics">
+      <h3>建築物に関する研究テーマ</h3>
+      <ul>
+        <li>説明可能AI耐震設計</li>
+      </ul>
+    </div>
       
     </section>
   </main>
@@ -497,6 +516,29 @@
         bubble.style.left = '50%';
         bubble.style.top = '50%';
         bubble.style.transform = 'translate(-50%, -50%)';
+        return;
+      }
+
+      // 追加：吹き出しをホットスポットの右側に出す場合
+      if (bubble.dataset.placement === 'right') {
+        const gap = 36;      // ホットスポット中心から吹き出しまでの距離
+        const margin = 12;   // 画像の端との余白
+        const cityW = city.clientWidth;
+        const cityH = city.clientHeight;
+        const bw = bubble.offsetWidth;
+        const bh = bubble.offsetHeight;
+
+        // 右側に配置（はみ出す場合は画像内に収める）
+        let left = hotspot.offsetLeft + gap;
+        left = Math.max(margin, Math.min(left, cityW - bw - margin));
+
+        // 縦はホットスポットの中央にそろえ、上下にはみ出さないよう調整
+        let top = hotspot.offsetTop - bh / 2;
+        top = Math.max(margin, Math.min(top, cityH - bh - margin));
+
+        bubble.style.left = left + 'px';
+        bubble.style.top = top + 'px';
+        bubble.style.transform = 'none';
         return;
       }
     
